@@ -1,0 +1,26 @@
+package com.concretepage.iservice;
+
+import com.concretepage.entity.ContactPerson;
+import java.util.List;
+
+import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.Transport;
+
+public interface ISalesQuotationService {
+
+    List<SalesQuotation> getAllQuotation();
+
+    List<Transport> getAllTransports();
+
+    SalesQuotation getQuotationById(int quotID);
+
+    public Long getNewQuottionID();
+
+    public void addnewQuotation(SalesQuotation quot);
+    
+    public void updateQuotation(SalesQuotation qot);
+    
+    public void deleteQuotation(int id);
+
+    public List<ContactPerson> getAllContacts();
+}
