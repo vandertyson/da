@@ -1,7 +1,6 @@
 package com.concretepage.controller;
 
 import com.concretepage.entity.ContactPerson;
-import com.concretepage.entity.Customer;
 import com.concretepage.entity.Employee;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.concretepage.entity.SaleEmployee;
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.Transport;
-import com.concretepage.iservice.IEmployeeService;
 import com.concretepage.iservice.ISalesQuotationService;
 import com.concretepage.service.EmployeeService;
 import com.concretepage.service.SaleEmployeeService;
@@ -81,7 +79,7 @@ public class SalesQuotationController {
         return new ResponseEntity<List<Transport>>(list, HttpStatus.OK);
     }
 
-    @GetMapping("transport")
+    @GetMapping("contacts")
     public ResponseEntity<List<ContactPerson>> getAllContacts() {
         List<ContactPerson> list = service.getAllContacts();
         return new ResponseEntity<List<ContactPerson>>(list, HttpStatus.OK);
