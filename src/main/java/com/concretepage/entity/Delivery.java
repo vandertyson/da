@@ -17,19 +17,12 @@ public class Delivery {
         this.id = id;
         this.name = name;
         this.code = code;
-        this.contactpersonname = contactpersonname;
-        this.contactpersoncode = contactpersoncode;
-
-        this.saleemployee = saleemployee;
         this.employee = employee;
         this.docdate = docdate;
         this.duedate = duedate;
         this.taxdate = taxdate;
         this.address = address;
         this.shipto = shipto;
-
-        this.series = series;
-
         this.trasnport = trasnport;
     }
 
@@ -41,26 +34,15 @@ public class Delivery {
         this.code = code;
     }
 
-    public String getContactName() {
-        return contactpersonname;
-    }
-
-    public void setContactName(String contactpersonname) {
-        this.contactpersonname = contactpersonname;
-    }
-
     private int id;
     private String name;
     private String code;
-    private String contactpersonname;
-    private String saleemployee;
     private String employee;
     private Date docdate;
     private Date duedate;
     private Date taxdate;
     private String address;
     private String shipto;
-    private int series;
     private int trasnport;
     private int docnum;
 
@@ -87,14 +69,6 @@ public class Delivery {
 
     public void setTrasnport(int trasnport) {
         this.trasnport = trasnport;
-    }
-
-    public int getSeries() {
-        return series;
-    }
-
-    public void setSeries(int series) {
-        this.series = series;
     }
 
     public String getShipto() {
@@ -129,22 +103,6 @@ public class Delivery {
         this.name = name;
     }
 
-    public String getContactCode() {
-        return contactpersoncode;
-    }
-
-    public void setContactCode(String code) {
-        this.contactpersoncode = code;
-    }
-
-    public String getSaleEmployee() {
-        return saleemployee;
-    }
-
-    public void setSaleEmployee(String saleemployee) {
-        this.saleemployee = saleemployee;
-    }
-
     public String getEmployee() {
         return employee;
     }
@@ -177,5 +135,4 @@ public class Delivery {
         this.taxdate = taxdate;
     }
 
-    private String contactpersoncode;
 }

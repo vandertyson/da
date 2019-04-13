@@ -24,7 +24,6 @@ public class SalesOrder {
         this.address = address;
         this.shipto = shipto;
         this.billto = billto;
-        this.series = series;
         this.add = add;
         this.trasnport = trasnport;
     }
@@ -78,10 +77,64 @@ public class SalesOrder {
     private String address;
     private String billto;
     private String shipto;
-    private int series;
     private String add;
     private int trasnport;
+    private String slpname;
+    private String cntname;
+    private String emfirstname;
+    private String emplastname;
+    private String transportname;
+
     private List<SoGrid> listItem;
+    private List<SalesQuotation> listQuotation;
+
+    public String getTransportname() {
+        return transportname;
+    }
+
+    public void setTransportname(String transportname) {
+        this.transportname = transportname;
+    }
+
+    public String getSlpname() {
+        return slpname;
+    }
+
+    public void setSlpname(String slpname) {
+        this.slpname = slpname;
+    }
+
+    public String getCntname() {
+        return cntname;
+    }
+
+    public void setCntname(String cntname) {
+        this.cntname = cntname;
+    }
+
+    public String getEmfirstname() {
+        return emfirstname;
+    }
+
+    public void setEmfirstname(String emfirstname) {
+        this.emfirstname = emfirstname;
+    }
+
+    public String getEmplastname() {
+        return emplastname;
+    }
+
+    public void setEmplastname(String emplastname) {
+        this.emplastname = emplastname;
+    }
+
+    public List<SalesQuotation> getListQuotation() {
+        return listQuotation;
+    }
+
+    public void setListQuotation(List<SalesQuotation> listQuotation) {
+        this.listQuotation = listQuotation;
+    }
 
     public List<SoGrid> getListItem() {
         return listItem;
@@ -113,14 +166,6 @@ public class SalesOrder {
 
     public void setShipto(String shipto) {
         this.shipto = shipto;
-    }
-
-    public int getSeries() {
-        return series;
-    }
-
-    public void setSeries(int series) {
-        this.series = series;
     }
 
     public String getAdd() {

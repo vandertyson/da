@@ -21,40 +21,40 @@ public class ItemDAO implements IItemDAO {
 
     @Override
     public List<Item> getAllItem() {
-        String sql = "SELECT ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand FROM dbo.OITM";
+        String sql = "SELECT * FROM view_itms";
         RowMapper<Item> rowMapper = new ItemRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public List<Item> getAllItem(String top) {
-        String sql = "SELECT TOP (?) ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand FROM dbo.OITM ";
+        String sql = "SELECT TOP (?) FROM view_itms ";
         RowMapper<Item> rowMapper = new ItemRowMapper();
+        
         return this.jdbcTemplate.query(sql, new Object[]{Integer.parseInt(top)}, rowMapper);
     }
 
     @Override
     public List<Item> getItemWithName(String name) {
-        String sql = "SELECT ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand "
-                + "FROM dbo.OITM where ItemName = ? ";
+        String sql = "SELECT * FROM view_itms where ItemName = ? ";
         RowMapper<Item> rowMapper = new ItemRowMapper();
         return this.jdbcTemplate.query(sql, new Object[]{name}, rowMapper);
     }
 
     @Override
     public void addItem(Item item) {
-        String sql = "INSERT INTO dbo.OITM (ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand) "
-                + "values (?,?,?,?,?)";
+        String sql = "INSERT INTO dbo.OITM (ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand,InvntryUom) "
+                + "values (?,?,?,?,?,?)";
         jdbcTemplate.update(sql, item.getCode(), item.getName(), item.getGroup(),
-                item.getVatGroup(), item.getOnhand());
+                item.getVatGroup(), item.getOnhand(), item.getUomcode());
     }
 
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE dbo.OITM SET ItemName = ?, ItmsGrpCod= ?, VatGourpSa = ?, OnHand=? "
+        String sql = "UPDATE dbo.OITM SET ItemName = ?, ItmsGrpCod= ?, VatGourpSa = ?, OnHand=?, InvntryUom=? "
                 + "WHERE ItemCode = ?";
         jdbcTemplate.update(sql, item.getName(), item.getGroup(),
-                item.getVatGroup(), item.getOnhand(), item.getCode());
+                item.getVatGroup(), item.getOnhand(), item.getCode(), item.getUomcode());
 
     }
 

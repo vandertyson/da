@@ -25,7 +25,7 @@ public class SoGridDAO implements ISoGridDAO {
         //Day cai query ong sua o day
         //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
         String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,Price,"
-                + "Currency,VatGroup,TaxCode,UomCode,LineTotal,WhsCode FROM dbo.RDR1";
+                + "Currency,VatGroup,TaxCode,UomCode,LineTotal,WhsCode,OpenQty FROM dbo.RDR1";
         RowMapper<SoGrid> rowMapper = new SoGridRowMapper();
         SoGrid grid = jdbcTemplate.queryForObject(sql, rowMapper, gridID);
         return grid;
@@ -34,7 +34,7 @@ public class SoGridDAO implements ISoGridDAO {
     @Override
     public List<SoGrid> getAllSoGrid() {
         String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,Price,"
-                + "Currency,VatGroup,TaxCode,UomCode,LineTotal,WhsCode FROM dbo.RDR1";
+                + "Currency,VatGroup,TaxCode,UomCode,LineTotal,WhsCode,OpenQty FROM dbo.RDR1";
         RowMapper<SoGrid> rowMapper = new SoGridRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }

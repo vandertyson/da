@@ -30,31 +30,31 @@ public class CustomerController {
     @GetMapping("customers")
     public ResponseEntity<List<Customer>> getCustomers(@RequestParam(value = "top", required = false) String top, @RequestParam(value = "name", required = false) String name) {
         if (top != null && !top.isEmpty()) {
-            List<Customer> list = service.getAllCustomer();
+            List<Customer> list = service.getAllCustomer(top);
             return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
         }
         if (name != null && !name.isEmpty()) {
             List<Customer> list = service.findCustomerByName(name);
             return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
         }
-        List<Customer> list = service.getAllCustomer(top);
+        List<Customer> list = service.getAllCustomer();
         return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addcustomer")
+    @PostMapping("addCustomer")
     public ResponseEntity<Boolean> addCustomer(@RequestBody Customer cust, UriComponentsBuilder builder) {
         System.out.println(cust);
         service.addCustomer(cust);
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
-    @PutMapping("updatecustomer")
+    @PutMapping("updateCustomer")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer cust) {
         service.updateCustomer(cust);
         return new ResponseEntity<Customer>(cust, HttpStatus.OK);
     }
 
-    @DeleteMapping("deletecustomer/{code}")
+    @DeleteMapping("deleteCustomer/{code}")
     public ResponseEntity<Boolean> deleteCustomer(@PathVariable("code") String code) {
         service.deleteCustomer(code);
         return new ResponseEntity<Boolean>(HttpStatus.OK);

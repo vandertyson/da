@@ -28,8 +28,7 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
     public SalesQuotation getQuotationById(int quotID) {
         //Day cai query ong sua o day
         //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,NumAtCard,"
-                + "DocCur,SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate FROM dbo.OQUT WHERE DocEntry = ?";
+        String sql = "select * from view_quotation where DocEntry = ?";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         SalesQuotation quot = jdbcTemplate.queryForObject(sql, rowMapper, quotID);
         return quot;
@@ -37,8 +36,7 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
 
     @Override
     public List<SalesQuotation> getAllQuotation() {
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,NumAtCard,"
-                + "DocCur,SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate FROM dbo.OQUT";
+        String sql = "select * from view_quotation";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -54,25 +52,34 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         Long newDocEntry = jdbcTemplate.queryForObject(sql1ll, Long.class);
         String sql1 = "Select max(DocNum) from dbo.OQUT";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
-        String sqlll = "INSERT INTO dbo.OQUT (DocEntry,Series,DocNum,CardCode,CardName,"
+        String sql_insert = "INSERT INTO dbo.OQUT (DocEntry,DocNum,CardCode,CardName,"
                 + "CntctCode,SlpCode,OwnerCode,DocDate,"
-                + "DocDueDate,TaxDate) values (?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sqlll, newDocEntry + 1, quot.getSeries(), newDocNum + 1, quot.getCode(),
-                quot.getName(), quot.getContactName(),
+                + "DocDueDate,TaxDate,DocStatus) values (?,?,?,"
+                + "?,?,?,"
+                + "?,?,?,?,?)";
+        quot.setDocstatus("0");
+        jdbcTemplate.update(sql_insert, newDocEntry + 1, newDocNum + 1,
+                quot.getCode(), quot.getName(), quot.getContactName(),
                 quot.getSaleEmployee(), quot.getEmployee(), quot.getDocDate(),
-                quot.getDueDate(), quot.getTaxDate());
+                quot.getDueDate(), quot.getTaxDate(), "0");
+
         String sql3 = "Select max(DocEntry) from dbo.QUT1";
         Long newgridid = jdbcTemplate.queryForObject(sql3, Long.class);
         String sql4 = "Select max(LineNum) from dbo.QUT1";
-        Long newgridid1 = jdbcTemplate.queryForObject(sql3, Long.class);
+        Long newgridid1 = jdbcTemplate.queryForObject(sql4, Long.class);
         for (SqGrid sqGrid : quot.getListItem()) {
             String sql2 = "INSERT INTO dbo.QUT1 (DocEntry,LineNum,ItemCode,Dscription,"
-                    + "Quantity,Price,Currency,VatGroup,UomCode,TaxCode,LineTotal) "
-                    + "values (?,?,?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql2, newgridid + quot.getListItem().indexOf(sqGrid) + 1,
-                    newgridid + quot.getListItem().indexOf(sqGrid) + 1, sqGrid.getItemcode(), sqGrid.getDescription(),
+                    + "Quantity,Price,Currency,VatGroup,"
+                    + "UomCode,TaxCode,LineTotal) "
+                    + "values (?,?,?,?"
+                    + ",?,?,?,?"
+                    + ",?,?,?)";
+            jdbcTemplate.update(sql2, 
+                    newgridid + quot.getListItem().indexOf(sqGrid) + 1,
+                    newgridid + quot.getListItem().indexOf(sqGrid) + 1, 
+                    sqGrid.getItemcode(), sqGrid.getDescription(),
                     sqGrid.getQuantity(), sqGrid.getPrice(), sqGrid.getCurrency(),
-                    sqGrid.getVatgroup(), sqGrid.getTaxcode(), sqGrid.getTotal());
+                    sqGrid.getVatgroup(), sqGrid.getTaxcode(), sqGrid.getTotal(), sqGrid.getUomcode());
         }
     }
 
@@ -91,9 +98,15 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
     }
 
     public void updateQuotation(SalesQuotation qot) {
-        String sql = "UPDATE dbo.OQUT SET CardCode=?, CardName=?, DocDueDate=? WHERE DocEntry=? ";
-        jdbcTemplate.update(sql, qot.getCode(), qot.getName(), qot.getDueDate(), qot.getId());
+        String sql_quot = "UPDATE dbo.OQUT SET CardCode = ?, CardName = ?, DocDueDate=?, SlpCode = ? WHERE DocEntry = ?";
+        jdbcTemplate.update(sql_quot, qot.getCode(), qot.getName(), qot.getDueDate(), qot.getSaleEmployee(), qot.getId());
 
+        for (SqGrid sqGrid : qot.getListItem()) {
+            String sql_item = "update dbo.QUT1 set ItemCode = ?, Quantity = ?, Price = ?, TaxCode = ?"
+                    + " where DocEntry = ?";
+            //sql1
+            jdbcTemplate.update(sql_item, sqGrid.getItemcode(), sqGrid.getQuantity(), sqGrid.getPrice(), sqGrid.getTaxcode(), sqGrid.getId());
+        }
     }
 
     @Override

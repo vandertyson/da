@@ -25,6 +25,15 @@ public class SoGrid {
     }
 
     private int id;
+    private int linenum;
+
+    public int getLinenum() {
+        return linenum;
+    }
+
+    public void setLinenum(int linenum) {
+        this.linenum = linenum;
+    }
     private String itemcode;
     private String description;
     private Double quantity;
@@ -35,6 +44,42 @@ public class SoGrid {
     private String taxcode;
     private String warehouse;
     private String uomcode;
+    private Double openqty;
+    private Double qtytoship;
+    private Double deliveredqty;
+    private Double orderedqty;
+
+    public Double getQtytoship() {
+        return qtytoship;
+    }
+
+    public void setQtytoship(Double qtytoship) {
+        this.qtytoship = qtytoship;
+    }
+
+    public Double getDeliveredqty() {
+        return deliveredqty;
+    }
+
+    public void setDeliveredqty(Double deliveredqty) {
+        this.deliveredqty = deliveredqty;
+    }
+
+    public Double getOrderedqty() {
+        return orderedqty;
+    }
+
+    public void setOrderedqty(Double orderedqty) {
+        this.orderedqty = orderedqty;
+    }
+
+    public Double getOpenqty() {
+        return openqty;
+    }
+
+    public void setOpenqty(Double openqty) {
+        this.openqty = openqty;
+    }
 
     public String getUomcode() {
         return uomcode;

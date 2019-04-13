@@ -3,6 +3,7 @@ package com.concretepage.iservice;
 import java.util.List;
 
 import com.concretepage.entity.SalesOrder;
+import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.Transport;
 
 public interface ISalesOrderService {
@@ -20,5 +21,9 @@ public interface ISalesOrderService {
     public void updateOrder(SalesOrder ord);
     
     public void deleteOrder(int id);
+
+    public List<SalesQuotation> getListQuotation();
+
+    public void copyQuotation(SalesQuotation quot);
 
 }

@@ -31,18 +31,18 @@ public class ItemController {
         //Item item = service.getItemById(id);
         //return new ResponseEntity<Item>(item, HttpStatus.OK);
         if (top != null && !top.isEmpty()) {
-            List<Item> list = service.getAllItem();
+            List<Item> list = service.getAllItem(top);
             return new ResponseEntity<List<Item>>(list, HttpStatus.OK);
         }
         if (name != null && !name.isEmpty()) {
             List<Item> list = service.findItemByName(name);
             return new ResponseEntity<List<Item>>(list, HttpStatus.OK);
         }
-        List<Item> list = service.getAllItem(top);
+        List<Item> list = service.getAllItem();
         return new ResponseEntity<List<Item>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addnewitem")
+    @PostMapping("addnewItem")
     public ResponseEntity<Boolean> addItem(@RequestBody Item item, UriComponentsBuilder builder) {
         //List<Item> list = service.getAllItem();
         //return new ResponseEntity<List<Item>>(list, HttpStatus.OK);
@@ -51,13 +51,13 @@ public class ItemController {
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
-    @PutMapping("updateitem")
+    @PutMapping("updateItem")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
         service.updateItem(item);
         return new ResponseEntity<Item>(item, HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteitem/{code}")
+    @DeleteMapping("deleteItem/{code}")
     public ResponseEntity<Boolean> deleteItem(@PathVariable("code") String code) {
         service.deleteItem(code);
         return new ResponseEntity<Boolean>(HttpStatus.OK);

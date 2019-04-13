@@ -15,6 +15,24 @@ public class Employee {
     private String firstname;
     private String lastname;
     private int dept;
+    private String sex;
+    private int userid;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
     public Employee(int id, String name, String lastname, int dept) {
         this.id = id;

@@ -13,6 +13,7 @@ public class SoGridRowMapper implements RowMapper<SoGrid> {
         SoGrid grid = new SoGrid();
         //ten cot luc select ra
         grid.setId(row.getInt("DocEntry"));
+        grid.setLinenum(row.getInt("LineNum"));
         grid.setItemcode(row.getString("ItemCode"));
         grid.setDescription(row.getString("Dscription"));
         grid.setCurrency(row.getString("Currency"));
@@ -23,6 +24,10 @@ public class SoGridRowMapper implements RowMapper<SoGrid> {
         grid.setTotal(row.getDouble("LineTotal"));
         grid.setWarehouse(row.getString("WhsCode"));
         grid.setUomcode(row.getString("UomCode"));
+        grid.setOpenqty(row.getDouble("OpenQty"));
+        grid.setQtytoship(row.getDouble("QtyToShip"));
+        grid.setDeliveredqty(row.getDouble("DelivrdQty"));
+        grid.setOrderedqty(row.getDouble("OrderedQty"));
         return grid;
     }
     

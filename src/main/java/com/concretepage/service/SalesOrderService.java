@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.concretepage.entity.SalesOrder;
+import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesOrderService;
 
@@ -49,6 +50,16 @@ public class SalesOrderService implements ISalesOrderService {
     @Override
     public void updateOrder(SalesOrder ord) {
         DAO.updateOrder(ord);
+    }
+
+    @Override
+    public List<SalesQuotation> getListQuotation() {
+        return DAO.getListQuotation();
+    }
+
+    @Override
+    public void copyQuotation(SalesQuotation quot) {
+        DAO.copyQuotation(quot);
     }
 
 }

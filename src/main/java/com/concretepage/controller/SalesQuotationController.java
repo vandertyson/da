@@ -66,7 +66,7 @@ public class SalesQuotationController {
         return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addquotation")
+    @PostMapping("addQuotation")
     public ResponseEntity<Boolean> addQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
 
         service.addnewQuotation(quot);
@@ -85,7 +85,7 @@ public class SalesQuotationController {
         return new ResponseEntity<List<ContactPerson>>(list, HttpStatus.OK);
     }
 
-    @PutMapping("updatequotation")
+    @PutMapping("updateQuotation")
     public ResponseEntity<SalesQuotation> updateQuotation(@RequestBody SalesQuotation qot) {
         service.updateQuotation(qot);
         return new ResponseEntity<SalesQuotation>(qot, HttpStatus.OK);

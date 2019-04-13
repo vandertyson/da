@@ -21,6 +21,24 @@ public class Item {
     private int group;
     private String vatgroup;
     private Double onhand;
+    private String uomcode;
+    private String groupname;
+
+    public String getGroupname() {
+        return groupname;
+    }
+
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
+    }
+
+    public String getUomcode() {
+        return uomcode;
+    }
+
+    public void setUomcode(String uomcode) {
+        this.uomcode = uomcode;
+    }
 
     public Double getOnhand() {
         return onhand;

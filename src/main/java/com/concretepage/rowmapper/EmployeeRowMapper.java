@@ -23,6 +23,8 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         emp.setFirstname(row.getString("firstName"));
         emp.setLastname(row.getString("lastName"));
         emp.setDept(row.getInt("dept"));
+        emp.setSex(row.getString("sex"));
+        emp.setUserid(row.getInt("userId"));
         return emp;
     }
 }

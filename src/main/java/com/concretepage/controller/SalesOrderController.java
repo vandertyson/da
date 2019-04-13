@@ -66,7 +66,7 @@ public class SalesOrderController {
         return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addorder")
+    @PostMapping("addOrder")
     public ResponseEntity<Boolean> addOrder(@RequestBody SalesOrder ord, UriComponentsBuilder builder) {
 
         service.addnewOrder(ord);
@@ -79,7 +79,7 @@ public class SalesOrderController {
         return new ResponseEntity<List<Transport>>(list, HttpStatus.OK);
     }
 
-    @PutMapping("updateorder")
+    @PutMapping("updateOrder")
     public ResponseEntity<SalesOrder> updateOrder(@RequestBody SalesOrder ord) {
         service.updateOrder(ord);
         return new ResponseEntity<SalesOrder>(ord, HttpStatus.OK);
@@ -89,6 +89,19 @@ public class SalesOrderController {
     public ResponseEntity<Void> deleteOrder(@PathVariable("id") Integer id) {
         service.deleteOrder(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("getQuotationInfo")
+    public ResponseEntity<List<SalesQuotation>> getListQuotation() {
+        List<SalesQuotation> list = service.getListQuotation();
+        return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+    }
+
+    @PostMapping("addQuotationInfo")
+    public ResponseEntity<Boolean> copyQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
+
+        service.copyQuotation(quot);
+        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
 }

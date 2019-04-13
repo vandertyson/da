@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class SalesQuotationRowMapper implements RowMapper<SalesQuotation> {
-
+    
     @Override
     public SalesQuotation mapRow(ResultSet row, int rowNum) throws SQLException {
         SalesQuotation head = new SalesQuotation();
@@ -23,9 +23,14 @@ public class SalesQuotationRowMapper implements RowMapper<SalesQuotation> {
         head.setDocDate(row.getDate("DocDate"));
         head.setDueDate(row.getDate("DocDueDate"));
         head.setTaxDate(row.getDate("TaxDate"));
-        head.setSeries(row.getInt("Series"));
         head.setDocnum(row.getInt("DocNum"));
+        head.setDocstatus(row.getString("DocStatus"));
+        head.setCntname(row.getString("Name"));
+        head.setSlpname(row.getString("SlpName"));
+        head.setEmfirstname(row.getString("FirstName"));
+        head.setEmplastname(row.getString("LastName"));
+        head.setRef(row.getString("Ref1"));
         return head;
     }
-
+    
 }

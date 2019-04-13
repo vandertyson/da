@@ -13,7 +13,9 @@ import com.concretepage.rowmapper.SalesOrderRowMapper;
 import com.concretepage.daointerface.ISalesOrderDAO;
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.SoGrid;
+import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
+import com.concretepage.rowmapper.SalesQuotationRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
 
 @Transactional
@@ -27,9 +29,7 @@ public class SalesOrderDAO implements ISalesOrderDAO {
     public SalesOrder getOrderById(int ordID) {
         //Day cai query ong sua o day
         //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,"
-                + "DocCur,SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate,"
-                + "ShipToCode,Address2,PayToCode,Address,TrnspCode FROM dbo.ORDR";
+        String sql = "select * from view_order where DocEntry = ?";
         RowMapper<SalesOrder> rowMapper = new SalesOrderRowMapper();
         SalesOrder ord = jdbcTemplate.queryForObject(sql, rowMapper, ordID);
         return ord;
@@ -37,9 +37,7 @@ public class SalesOrderDAO implements ISalesOrderDAO {
 
     @Override
     public List<SalesOrder> getAllOrder() {
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,NumAtCard,"
-                + "DocCur,SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
-                + "Address2,PayToCode,Address,TrnspCode FROM dbo.ORDR";
+        String sql = "SELECT * from view_order";
         RowMapper<SalesOrder> rowMapper = new SalesOrderRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -55,11 +53,11 @@ public class SalesOrderDAO implements ISalesOrderDAO {
         Long newDocEntry = jdbcTemplate.queryForObject(sql1ll, Long.class);
         String sql1 = "Select max(DocNum) from dbo.ORDR";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
-        String sqlll = "INSERT INTO dbo.ORDR (DocEntry,Series,DocNum,CardCode,CardName,"
+        String sqlll = "INSERT INTO dbo.ORDR (DocEntry,DocNum,CardCode,CardName,"
                 + "CntctCode,SlpCode,OwnerCode,DocDate,"
                 + "DocDueDate,TaxDate,ShipToCode,PayToCode,Address,"
-                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sqlll, newDocEntry + 1, ord.getSeries(), newDocNum + 1, ord.getCode(),
+                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, ord.getCode(),
                 ord.getName(), ord.getContactName(),
                 ord.getSaleEmployee(), ord.getEmployee(), ord.getDocDate(),
                 ord.getDueDate(), ord.getTaxDate(), ord.getShipto(), ord.getBillto(),
@@ -87,8 +85,16 @@ public class SalesOrderDAO implements ISalesOrderDAO {
     }
 
     public void updateOrder(SalesOrder ord) {
-        String sql = "UPDATE dbo.ORDR SET CardCode=?, CardName=?, DocDueDate=? WHERE DocEntry=? ";
-        jdbcTemplate.update(sql, ord.getCode(), ord.getName(), ord.getDueDate(), ord.getId());
+        String sql_ord = "UPDATE dbo.ORDR SET CardCode=?, CardName=?, DocDueDate=? WHERE DocEntry=? ";
+        jdbcTemplate.update(sql_ord, ord.getCode(), ord.getName(), ord.getDueDate(), ord.getId());
+
+        for (SoGrid soGrid : ord.getListItem()) {
+            String sql_item = "update dbo.QUT1 set ItemCode = ?, Quantity = ?, Price = ?, TaxCode = ?"
+                    + " where DocEntry = ?";
+            //sql1
+            jdbcTemplate.update(sql_item, soGrid.getItemcode(), soGrid.getQuantity(), soGrid.getPrice(),
+                    soGrid.getTaxcode(), soGrid.getId());
+        }
 
     }
 
@@ -96,6 +102,18 @@ public class SalesOrderDAO implements ISalesOrderDAO {
     public void deleteOrder(int id) {
         String sql = "DELETE from dbo.ORDR WHERE DocEntry = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public List<SalesQuotation> getListQuotation() {
+        String sql = "SELECT * from view_quotation where Ref1 IS NULL";
+        RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public void copyQuotation(SalesQuotation quot) {
+        String sql = "INSERT INTO dbo.ORDR (select * from view_quotation where Ref1 IS NULL)";
+        jdbcTemplate.update(sql, quot.getRef());
     }
 
 }

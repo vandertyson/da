@@ -36,20 +36,20 @@ public class EmployeeController {
         return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addemployee")
+    @PostMapping("addEmployee")
     public ResponseEntity<Boolean> addEmployee(@RequestBody Employee emp, UriComponentsBuilder builder) {
         System.out.println(emp);
         service.addEmployee(emp);
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
-    @PutMapping("updateemployee")
+    @PutMapping("updateEmployee")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee emp) {
         service.updateEmployee(emp);
         return new ResponseEntity<Employee>(emp, HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteemployee/{empID}")
+    @DeleteMapping("deleteEmployee/{empID}")
     public ResponseEntity<Boolean> deleteEmployee(@PathVariable("empID") Integer empID) {
         service.deleteEmployee(empID);
         return new ResponseEntity<Boolean>(HttpStatus.OK);

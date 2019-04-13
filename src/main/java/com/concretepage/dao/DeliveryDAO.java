@@ -27,8 +27,8 @@ public class DeliveryDAO implements IDeliveryDAO {
     public Delivery getDeliveryById(int delvID) {
         //Day cai query ong sua o day
         //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,NumAtCard,"
-                + "SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
+        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
+                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
                 + "Address2,TrnspCode FROM dbo.ODLN WHERE ID = ?";
         RowMapper<Delivery> rowMapper = new DeliveryRowMapper();
         Delivery delv = jdbcTemplate.queryForObject(sql, rowMapper, delvID);
@@ -37,8 +37,8 @@ public class DeliveryDAO implements IDeliveryDAO {
 
     @Override
     public List<Delivery> getAllDeliveries() {
-        String sql = "SELECT DocEntry,Series,DocNum,CardCode,CardName,CntctCode,NumAtCard,"
-                + "SlpCode,OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
+        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
+                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
                 + "Address2,TrnspCode FROM dbo.ODLN";
         RowMapper<Delivery> rowMapper = new DeliveryRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
@@ -55,13 +55,12 @@ public class DeliveryDAO implements IDeliveryDAO {
         Long newDocEntry = jdbcTemplate.queryForObject(sql1ll, Long.class);
         String sql1 = "Select max(DocNum) from dbo.ODLN";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
-        String sqlll = "INSERT INTO dbo.ODLN (DocEntry,Series,DocNum,CardCode,CardName,"
-                + "CntctCode,SlpCode,OwnerCode,DocDate,"
+        String sqlll = "INSERT INTO dbo.ODLN (DocEntry,DocNum,CardCode,CardName,"
+                + "OwnerCode,DocDate,"
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
-                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sqlll, newDocEntry + 1, delv.getSeries(), newDocNum + 1, delv.getCode(),
-                delv.getName(), delv.getContactName(),
-                delv.getSaleEmployee(), delv.getEmployee(), delv.getDocDate(),
+                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, delv.getCode(),
+                delv.getName(), delv.getEmployee(), delv.getDocDate(),
                 delv.getDueDate(), delv.getTaxDate(), delv.getShipto(),
                 delv.getAddress(), delv.getTrasnport());
         String sql3 = "Select max(DocEntry) from dbo.DLN1";

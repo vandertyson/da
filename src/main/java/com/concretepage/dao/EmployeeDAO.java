@@ -21,14 +21,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() {
-        String sql = "SELECT empID,firstName,lastName,dept from dbo.OHEM";
+        String sql = "SELECT empID,firstName,lastName,sex,dept,userId from dbo.OHEM";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public Employee getEmployeeById(int empID) {
-        String sql = "SELECT empID,firstName,lastName,dept from dbo.OHEM";
+        String sql = "SELECT empID,firstName,lastName,sex,dept,userId from dbo.OHEM";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         Employee emp = jdbcTemplate.queryForObject(sql, rowMapper, empID);
         return emp;
@@ -37,20 +37,20 @@ public class EmployeeDAO implements IEmployeeDAO {
     @Override
     public void addEmployee(Employee emp) {
         //add employee
-        String sql = "INSERT INTO dbo.OHEM (empID,firstName,lastName,dept) values (?,?,?,?)";
+        String sql = "INSERT INTO dbo.OHEM (empID,firstName,lastName,sex,dept,userId) values (?,?,?,?,?,?)";
         jdbcTemplate.update(sql, emp.getId(), emp.getFirstname(), emp.getLastname(), emp.getDept());
     }
 
     @Override
     public List<Employee> getEmployeeWithName(String name) {
-        String sql = "SELECT empID,firstName,lastName,dept FROM dbo.OHEM where empID = ? ";
+        String sql = "SELECT empID,firstName,lastName,sex,dept,userId FROM dbo.OHEM where empID = ? ";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         return this.jdbcTemplate.query(sql, new Object[]{name}, rowMapper);
     }
 
     @Override
     public void updateEmployee(Employee emp) {
-        String sql = "UPDATE dbo.OHEM SET firstName =?, lastName=?,dept=? WHERE empID=?";
+        String sql = "UPDATE dbo.OHEM SET firstName =?, lastName=?,dept=?,sex=? WHERE empID=?";
         jdbcTemplate.update(sql, emp.getFirstname(), emp.getLastname(), emp.getDept(), emp.getId());
     }
 

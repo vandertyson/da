@@ -24,7 +24,6 @@ public class SalesQuotation {
         this.docdate = docdate;
         this.duedate = duedate;
         this.taxdate = taxdate;
-        this.series = series;
     }
 
     public String getCode() {
@@ -53,8 +52,61 @@ public class SalesQuotation {
     private Date docdate;
     private Date duedate;
     private Date taxdate;
-    private int series;
     private int docnum;
+    private String docstatus;
+    private String slpname;
+    private String cntname;
+    private String emfirstname;
+    private String emplastname;
+    private String ref;
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    public String getSlpname() {
+        return slpname;
+    }
+
+    public void setSlpname(String slpname) {
+        this.slpname = slpname;
+    }
+
+    public String getCntname() {
+        return cntname;
+    }
+
+    public void setCntname(String cntname) {
+        this.cntname = cntname;
+    }
+
+    public String getEmfirstname() {
+        return emfirstname;
+    }
+
+    public void setEmfirstname(String emfirstname) {
+        this.emfirstname = emfirstname;
+    }
+
+    public String getEmplastname() {
+        return emplastname;
+    }
+
+    public void setEmplastname(String emplastname) {
+        this.emplastname = emplastname;
+    }
+
+    public String getDocstatus() {
+        return docstatus;
+    }
+
+    public void setDocstatus(String docstatus) {
+        this.docstatus = docstatus;
+    }
 
     public int getDocnum() {
         return docnum;
@@ -72,14 +124,6 @@ public class SalesQuotation {
 
     public void setListItem(List<SqGrid> listItem) {
         this.listItem = listItem;
-    }
-
-    public int getSeries() {
-        return series;
-    }
-
-    public void setSeries(int series) {
-        this.series = series;
     }
 
     public int getId() {
