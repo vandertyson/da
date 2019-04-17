@@ -59,6 +59,7 @@ public class SalesQuotation {
     private String emfirstname;
     private String emplastname;
     private String ref;
+    private List<SqGrid> listItem;
 
     public String getRef() {
         return ref;
@@ -115,8 +116,6 @@ public class SalesQuotation {
     public void setDocnum(int docnum) {
         this.docnum = docnum;
     }
-
-    private List<SqGrid> listItem;
 
     public List<SqGrid> getListItem() {
         return listItem;

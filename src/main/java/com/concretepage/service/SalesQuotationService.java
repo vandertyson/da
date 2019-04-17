@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.daointerface.ISalesQuotationDAO;
 import com.concretepage.entity.ContactPerson;
+import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 

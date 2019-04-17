@@ -15,6 +15,7 @@ import com.concretepage.entity.ContactPerson;
 import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.rowmapper.ContactPersonRowMapper;
+import com.concretepage.rowmapper.SqGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
 
 @Transactional
@@ -31,6 +32,10 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         String sql = "select * from view_quotation where DocEntry = ?";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         SalesQuotation quot = jdbcTemplate.queryForObject(sql, rowMapper, quotID);
+        String sql_items = "select * from dbo.QUT1 where DocEntry = ?";
+        RowMapper<SqGrid> rowMapper_item = new SqGridRowMapper();
+        List<SqGrid> items = jdbcTemplate.query(sql_items, rowMapper_item, quotID);
+        quot.setListItem(items);
         return quot;
     }
 
@@ -69,17 +74,17 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         Long newgridid1 = jdbcTemplate.queryForObject(sql4, Long.class);
         for (SqGrid sqGrid : quot.getListItem()) {
             String sql2 = "INSERT INTO dbo.QUT1 (DocEntry,LineNum,ItemCode,Dscription,"
-                    + "Quantity,Price,Currency,VatGroup,"
+                    + "Quantity,Price,Currency,vat,"
                     + "UomCode,TaxCode,LineTotal) "
                     + "values (?,?,?,?"
                     + ",?,?,?,?"
                     + ",?,?,?)";
-            jdbcTemplate.update(sql2, 
+            jdbcTemplate.update(sql2,
                     newgridid + quot.getListItem().indexOf(sqGrid) + 1,
-                    newgridid + quot.getListItem().indexOf(sqGrid) + 1, 
+                    newgridid + quot.getListItem().indexOf(sqGrid) + 1,
                     sqGrid.getItemcode(), sqGrid.getDescription(),
                     sqGrid.getQuantity(), sqGrid.getPrice(), sqGrid.getCurrency(),
-                    sqGrid.getVatgroup(), sqGrid.getTaxcode(), sqGrid.getTotal(), sqGrid.getUomcode());
+                    sqGrid.getVat(), sqGrid.getTaxcode(), sqGrid.getTotal(), sqGrid.getUomcode());
         }
     }
 

@@ -3,6 +3,7 @@ package com.concretepage.daointerface;
 import com.concretepage.entity.ContactPerson;
 import java.util.List;
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 
 public interface ISalesQuotationDAO {
@@ -16,5 +17,6 @@ public interface ISalesQuotationDAO {
     List<ContactPerson> getAllContacts();
 
     public void deleteQuotation(int id);
+   
 
 }

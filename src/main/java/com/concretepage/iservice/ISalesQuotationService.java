@@ -4,6 +4,7 @@ import com.concretepage.entity.ContactPerson;
 import java.util.List;
 
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 
 public interface ISalesQuotationService {

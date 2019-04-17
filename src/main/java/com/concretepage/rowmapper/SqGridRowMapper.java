@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class SqGridRowMapper implements RowMapper<SqGrid> {
-    
+
     @Override
     public SqGrid mapRow(ResultSet row, int rowNum) throws SQLException {
         SqGrid grid = new SqGrid();
@@ -18,12 +18,12 @@ public class SqGridRowMapper implements RowMapper<SqGrid> {
         grid.setCurrency(row.getString("Currency"));
         grid.setQuantity(row.getDouble("Quantity"));
         grid.setPrice(row.getDouble("Price"));
-        grid.setVatgroup(row.getString("VatGroup"));
+        grid.setVat(row.getInt("vat"));
         grid.setTaxcode(row.getString("TaxCode"));
         grid.setTotal(row.getDouble("LineTotal"));
         grid.setUomcode(row.getString("UomCode"));
         grid.setLinenum(row.getInt("LineNum"));
         return grid;
     }
-    
+
 }

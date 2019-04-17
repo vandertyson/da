@@ -21,7 +21,7 @@ public class SqGridDAO implements ISqGridDAO {
 		//Day cai query ong sua o day
 		//De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
 		String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,Price,Currency"
-                        + "VatGroup,UomCode,TaxCode,LineTotal FROM dbo.QUT1";
+                        + "vat,UomCode,TaxCode,LineTotal FROM dbo.QUT1";
 		RowMapper<SqGrid> rowMapper = new SqGridRowMapper();
 		SqGrid grid = jdbcTemplate.queryForObject(sql, rowMapper, gridID);
 		return grid;
@@ -29,7 +29,7 @@ public class SqGridDAO implements ISqGridDAO {
 	@Override
 	public List<SqGrid> getAllSqGrid() {
 		String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,Price,Currency,"
-                        + "VatGroup,UomCode,TaxCode,LineTotal FROM dbo.QUT1";
+                        + "vat,UomCode,TaxCode,LineTotal FROM dbo.QUT1";
 		RowMapper<SqGrid> rowMapper = new SqGridRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}	

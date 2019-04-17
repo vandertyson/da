@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.concretepage.entity.SaleEmployee;
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 import com.concretepage.service.EmployeeService;
@@ -54,7 +55,7 @@ public class SalesQuotationController {
         return new ResponseEntity<Long>(newQuottionID, HttpStatus.OK);
     }
 
-    @GetMapping("saleemployee")
+    @GetMapping("saleEmployee")
     public ResponseEntity<List<SaleEmployee>> getAllSaleEmployees() {
         List<SaleEmployee> list = saleemployeeService.getAllSaleEmployees();
         return new ResponseEntity<List<SaleEmployee>>(list, HttpStatus.OK);
@@ -96,5 +97,4 @@ public class SalesQuotationController {
         service.deleteQuotation(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-
 }

@@ -13,16 +13,23 @@ public class Item {
         this.name = name;
         this.code = code;
         this.group = group;
-        this.vatgroup = vatgroup;
         this.onhand = onhand;
     }
     private String code;
     private String name;
     private int group;
-    private String vatgroup;
     private Double onhand;
     private String uomcode;
     private String groupname;
+    private int vat;
+
+    public int getVat() {
+        return vat;
+    }
+
+    public void setVat(int vat) {
+        this.vat = vat;
+    }
 
     public String getGroupname() {
         return groupname;
@@ -70,14 +77,6 @@ public class Item {
 
     public void setGroup(int group) {
         this.group = group;
-    }
-
-    public String getVatGroup() {
-        return vatgroup;
-    }
-
-    public void setVatGroup(String vatgroup) {
-        this.vatgroup = vatgroup;
     }
 
 }

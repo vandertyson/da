@@ -14,10 +14,10 @@ public class ItemRowMapper implements RowMapper<Item> {
         item.setCode(row.getString("ItemCode"));
         item.setName(row.getString("ItemName"));
         item.setGroup(row.getInt("ItmsGrpCod"));
-        item.setVatGroup(row.getString("VatGourpSa"));
         item.setOnhand(row.getDouble("OnHand"));
         item.setUomcode(row.getString("InvntryUom"));
         item.setGroupname(row.getString("ItmsGrpNam"));
+        item.setVat(row.getInt("vat"));
         return item;
     }
 

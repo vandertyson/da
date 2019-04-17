@@ -21,14 +21,15 @@ public class ItemDAO implements IItemDAO {
 
     @Override
     public List<Item> getAllItem() {
-        String sql = "SELECT * FROM view_itms";
+        String sql = "SELECT * FROM view_itmem";
         RowMapper<Item> rowMapper = new ItemRowMapper();
+        
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public List<Item> getAllItem(String top) {
-        String sql = "SELECT TOP (?) FROM view_itms ";
+        String sql = "SELECT TOP (?) FROM view_itmem ";
         RowMapper<Item> rowMapper = new ItemRowMapper();
         
         return this.jdbcTemplate.query(sql, new Object[]{Integer.parseInt(top)}, rowMapper);
@@ -36,25 +37,25 @@ public class ItemDAO implements IItemDAO {
 
     @Override
     public List<Item> getItemWithName(String name) {
-        String sql = "SELECT * FROM view_itms where ItemName = ? ";
+        String sql = "SELECT * FROM view_itmem where ItemName = ? ";
         RowMapper<Item> rowMapper = new ItemRowMapper();
         return this.jdbcTemplate.query(sql, new Object[]{name}, rowMapper);
     }
 
     @Override
     public void addItem(Item item) {
-        String sql = "INSERT INTO dbo.OITM (ItemCode,ItemName,ItmsGrpCod,VatGourpSa,OnHand,InvntryUom) "
+        String sql = "INSERT INTO dbo.OITM (ItemCode,ItemName,ItmsGrpCod,OnHand,InvntryUom,vat) "
                 + "values (?,?,?,?,?,?)";
         jdbcTemplate.update(sql, item.getCode(), item.getName(), item.getGroup(),
-                item.getVatGroup(), item.getOnhand(), item.getUomcode());
+                item.getVat(), item.getOnhand(), item.getUomcode());
     }
 
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE dbo.OITM SET ItemName = ?, ItmsGrpCod= ?, VatGourpSa = ?, OnHand=?, InvntryUom=? "
+        String sql = "UPDATE dbo.OITM SET ItemName = ?, ItmsGrpCod= ?, vat = ?, OnHand=?, InvntryUom=? "
                 + "WHERE ItemCode = ?";
         jdbcTemplate.update(sql, item.getName(), item.getGroup(),
-                item.getVatGroup(), item.getOnhand(), item.getCode(), item.getUomcode());
+                item.getVat(), item.getOnhand(), item.getCode(), item.getUomcode());
 
     }
 

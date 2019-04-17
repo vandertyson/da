@@ -21,14 +21,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() {
-        String sql = "SELECT empID,firstName,lastName,sex,dept,userId from dbo.OHEM";
+        String sql = "SELECT * from view_employee";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public Employee getEmployeeById(int empID) {
-        String sql = "SELECT empID,firstName,lastName,sex,dept,userId from dbo.OHEM";
+        String sql = "SELECT * from view_employee";
         RowMapper<Employee> rowMapper = new EmployeeRowMapper();
         Employee emp = jdbcTemplate.queryForObject(sql, rowMapper, empID);
         return emp;
@@ -38,7 +38,7 @@ public class EmployeeDAO implements IEmployeeDAO {
     public void addEmployee(Employee emp) {
         //add employee
         String sql = "INSERT INTO dbo.OHEM (empID,firstName,lastName,sex,dept,userId) values (?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, emp.getId(), emp.getFirstname(), emp.getLastname(), emp.getDept());
+        jdbcTemplate.update(sql, emp.getId(), emp.getFirstname(), emp.getLastname(), emp.getSex(), emp.getDept(), emp.getUserid());
     }
 
     @Override
