@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class SoGridRowMapper implements RowMapper<SoGrid> {
-    
+
     @Override
     public SoGrid mapRow(ResultSet row, int rowNum) throws SQLException {
         SoGrid grid = new SoGrid();
@@ -25,10 +25,8 @@ public class SoGridRowMapper implements RowMapper<SoGrid> {
         grid.setWarehouse(row.getString("WhsCode"));
         grid.setUomcode(row.getString("UomCode"));
         grid.setOpenqty(row.getDouble("OpenQty"));
-        grid.setQtytoship(row.getDouble("QtyToShip"));
-        grid.setDeliveredqty(row.getDouble("DelivrdQty"));
-        grid.setOrderedqty(row.getDouble("OrderedQty"));
+
         return grid;
     }
-    
+
 }

@@ -15,9 +15,6 @@ public class ArInvoiceRowMapper implements RowMapper<ArInvoice> {
         head.setId(row.getInt("DocEntry"));
         head.setCode(row.getString("CardCode"));
         head.setName(row.getString("CardName"));
-        head.setContactName(row.getString("CntctCode"));
-        head.setContactCode(row.getString("NumAtCard"));
-        head.setSaleEmployee(row.getString("SlpCode"));
         head.setEmployee(row.getString("OwnerCode"));
         head.setDocDate(row.getDate("DocDate"));
         head.setDueDate(row.getDate("DocDueDate"));
@@ -25,7 +22,6 @@ public class ArInvoiceRowMapper implements RowMapper<ArInvoice> {
         head.setAddress(row.getString("Address2"));
         head.setShipto(row.getString("ShipToCode"));
         head.setTrasnport(row.getInt("TrnspCode"));
-        head.setSeries(row.getInt("Series"));
         return head;
     }
 

@@ -45,33 +45,6 @@ public class SoGrid {
     private String warehouse;
     private String uomcode;
     private Double openqty;
-    private Double qtytoship;
-    private Double deliveredqty;
-    private Double orderedqty;
-
-    public Double getQtytoship() {
-        return qtytoship;
-    }
-
-    public void setQtytoship(Double qtytoship) {
-        this.qtytoship = qtytoship;
-    }
-
-    public Double getDeliveredqty() {
-        return deliveredqty;
-    }
-
-    public void setDeliveredqty(Double deliveredqty) {
-        this.deliveredqty = deliveredqty;
-    }
-
-    public Double getOrderedqty() {
-        return orderedqty;
-    }
-
-    public void setOrderedqty(Double orderedqty) {
-        this.orderedqty = orderedqty;
-    }
 
     public Double getOpenqty() {
         return openqty;

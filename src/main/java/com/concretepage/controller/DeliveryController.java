@@ -70,7 +70,7 @@ public class DeliveryController {
         return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("adddelivery")
+    @PostMapping("addDelivery")
     public ResponseEntity<Boolean> addDelivery(@RequestBody Delivery delv, UriComponentsBuilder builder) {
 
         service.addnewDelivery(delv);
@@ -83,7 +83,7 @@ public class DeliveryController {
         return new ResponseEntity<List<Transport>>(list, HttpStatus.OK);
     }
 
-    @PutMapping("updatedelivery")
+    @PutMapping("updateDelivery")
     public ResponseEntity<Delivery> updateDelivery(@RequestBody Delivery delv) {
         service.updateDelivery(delv);
         return new ResponseEntity<Delivery>(delv, HttpStatus.OK);

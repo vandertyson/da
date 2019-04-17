@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
-
+    
     @Override
     public SalesOrder mapRow(ResultSet row, int rowNum) throws SQLException {
         SalesOrder head = new SalesOrder();
@@ -33,8 +33,8 @@ public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
         head.setEmfirstname(row.getString("FirstName"));
         head.setEmplastname(row.getString("LastName"));
         head.setTransportname(row.getString("TrnspName"));
-
+        head.setRef(row.getString("Ref1"));
         return head;
     }
-
+    
 }

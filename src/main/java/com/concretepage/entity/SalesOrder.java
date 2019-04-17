@@ -84,6 +84,15 @@ public class SalesOrder {
     private String emfirstname;
     private String emplastname;
     private String transportname;
+    private String ref;
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
 
     private List<SoGrid> listItem;
     private List<SalesQuotation> listQuotation;
