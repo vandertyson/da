@@ -45,6 +45,7 @@ public class SalesQuotation {
     private int id;
     private String name;
     private String code;
+    private String contactpersoncode;
     private String contactpersonname;
     private String currency;
     private String saleemployee;
@@ -55,7 +56,6 @@ public class SalesQuotation {
     private int docnum;
     private String docstatus;
     private String slpname;
-    private String cntname;
     private String emfirstname;
     private String emplastname;
     private String ref;
@@ -75,14 +75,6 @@ public class SalesQuotation {
 
     public void setSlpname(String slpname) {
         this.slpname = slpname;
-    }
-
-    public String getCntname() {
-        return cntname;
-    }
-
-    public void setCntname(String cntname) {
-        this.cntname = cntname;
     }
 
     public String getEmfirstname() {
@@ -197,5 +189,4 @@ public class SalesQuotation {
         this.taxdate = taxdate;
     }
 
-    private String contactpersoncode;
 }

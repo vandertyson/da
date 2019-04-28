@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.concretepage.entity.Customer;
+import com.concretepage.entity.Item;
 import com.concretepage.iservice.ICustomerService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +59,12 @@ public class CustomerController {
     public ResponseEntity<Boolean> deleteCustomer(@PathVariable("code") String code) {
         service.deleteCustomer(code);
         return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+    @GetMapping("customer/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable("id") String code) {
+        Customer cust = service.getCustomerById(code);
+        return new ResponseEntity<Customer>(cust, HttpStatus.OK);
     }
 
 }

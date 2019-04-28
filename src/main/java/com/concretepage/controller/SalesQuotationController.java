@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.concretepage.entity.SaleEmployee;
 import com.concretepage.entity.SalesQuotation;
-import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 import com.concretepage.service.EmployeeService;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
@@ -68,7 +68,7 @@ public class SalesQuotationController {
     }
 
     @PostMapping("addQuotation")
-    public ResponseEntity<Boolean> addQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
+    public ResponseEntity<Boolean> addnewQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
 
         service.addnewQuotation(quot);
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
@@ -87,9 +87,9 @@ public class SalesQuotationController {
     }
 
     @PutMapping("updateQuotation")
-    public ResponseEntity<SalesQuotation> updateQuotation(@RequestBody SalesQuotation qot) {
+    public ResponseEntity<Boolean> updateQuotation(@RequestBody SalesQuotation qot) {
         service.updateQuotation(qot);
-        return new ResponseEntity<SalesQuotation>(qot, HttpStatus.OK);
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 
     @DeleteMapping("deleteQuotation/{id}")
@@ -97,4 +97,14 @@ public class SalesQuotationController {
         service.deleteQuotation(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @GetMapping("confirm")
+    public ResponseEntity<Boolean> confirm(@RequestParam("id") Integer quot_id, @RequestParam("confirm") String stat) {
+        if (service.confirmQuotation(quot_id, stat)) {
+            return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+        }
+    }
+
 }

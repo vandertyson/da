@@ -1,19 +1,28 @@
 package com.concretepage.entity;
 
 //ve sau can hien thi them truong gi thi khai bao vao day
+import java.util.Date;
+
 public class Item {
 
     public Item() {
         super();
     }
 
-    public Item(String code, String name, int group, String vatgroup, Double onhand) {
+    public Item(String code, String name, int group, String vatgroup,
+            Double onhand, String uomcode, String groupname, int vat, Date createdate, Date updatedate, int usersign) {
         super();
 
         this.name = name;
         this.code = code;
         this.group = group;
         this.onhand = onhand;
+        this.uomcode = uomcode;
+        this.groupname = groupname;
+        this.vat = vat;
+        this.createdate = createdate;
+        this.updatedate = updatedate;
+        this.usersign = usersign;
     }
     private String code;
     private String name;
@@ -22,6 +31,33 @@ public class Item {
     private String uomcode;
     private String groupname;
     private int vat;
+    private Date createdate;
+    private Date updatedate;
+    private int usersign;
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Date getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
+    }
+
+    public int getUsersign() {
+        return usersign;
+    }
+
+    public void setUsersign(int usersign) {
+        this.usersign = usersign;
+    }
 
     public int getVat() {
         return vat;

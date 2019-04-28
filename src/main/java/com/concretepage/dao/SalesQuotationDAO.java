@@ -17,6 +17,7 @@ import com.concretepage.entity.Transport;
 import com.concretepage.rowmapper.ContactPersonRowMapper;
 import com.concretepage.rowmapper.SqGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
+import org.springframework.http.ResponseEntity;
 
 @Transactional
 @Repository
@@ -27,8 +28,6 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
 
     @Override
     public SalesQuotation getQuotationById(int quotID) {
-        //Day cai query ong sua o day
-        //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
         String sql = "select * from view_quotation where DocEntry = ?";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         SalesQuotation quot = jdbcTemplate.queryForObject(sql, rowMapper, quotID);
@@ -41,7 +40,7 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
 
     @Override
     public List<SalesQuotation> getAllQuotation() {
-        String sql = "select * from view_quotation";
+        String sql = "select * from view_quotation order by DocEntry DESC";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -58,33 +57,31 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         String sql1 = "Select max(DocNum) from dbo.OQUT";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
         String sql_insert = "INSERT INTO dbo.OQUT (DocEntry,DocNum,CardCode,CardName,"
-                + "CntctCode,SlpCode,OwnerCode,DocDate,"
+                + "CntctCode,DocCur,SlpCode,OwnerCode,DocDate,"
                 + "DocDueDate,TaxDate,DocStatus) values (?,?,?,"
                 + "?,?,?,"
-                + "?,?,?,?,?)";
+                + "?,?,?,?,?,?)";
         quot.setDocstatus("0");
         jdbcTemplate.update(sql_insert, newDocEntry + 1, newDocNum + 1,
-                quot.getCode(), quot.getName(), quot.getContactName(),
+                quot.getCode(), quot.getName(), quot.getContactCode(), quot.getCurrency(),
                 quot.getSaleEmployee(), quot.getEmployee(), quot.getDocDate(),
                 quot.getDueDate(), quot.getTaxDate(), "0");
 
-        String sql3 = "Select max(DocEntry) from dbo.QUT1";
-        Long newgridid = jdbcTemplate.queryForObject(sql3, Long.class);
-        String sql4 = "Select max(LineNum) from dbo.QUT1";
-        Long newgridid1 = jdbcTemplate.queryForObject(sql4, Long.class);
         for (SqGrid sqGrid : quot.getListItem()) {
+            String sql4 = "Select max(LineNum) from dbo.QUT1";
+            Long new_linenum = jdbcTemplate.queryForObject(sql4, Long.class);
             String sql2 = "INSERT INTO dbo.QUT1 (DocEntry,LineNum,ItemCode,Dscription,"
                     + "Quantity,Price,Currency,vat,"
-                    + "UomCode,TaxCode,LineTotal) "
+                    + "DiscPrcnt,LineTotal,UomCode) "
                     + "values (?,?,?,?"
                     + ",?,?,?,?"
                     + ",?,?,?)";
             jdbcTemplate.update(sql2,
-                    newgridid + quot.getListItem().indexOf(sqGrid) + 1,
-                    newgridid + quot.getListItem().indexOf(sqGrid) + 1,
+                    newDocEntry + quot.getListItem().indexOf(sqGrid) + 1,
+                    new_linenum + quot.getListItem().indexOf(sqGrid) + 1,
                     sqGrid.getItemcode(), sqGrid.getDescription(),
                     sqGrid.getQuantity(), sqGrid.getPrice(), sqGrid.getCurrency(),
-                    sqGrid.getVat(), sqGrid.getTaxcode(), sqGrid.getTotal(), sqGrid.getUomcode());
+                    sqGrid.getVat(), sqGrid.getDiscount(), sqGrid.getTotal(), sqGrid.getUomcode());
         }
     }
 
@@ -97,27 +94,36 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
 
     @Override
     public List<ContactPerson> getAllContacts() {
-        String sql = "SELECT CntctCode, Name, Position, Tell, E_MaiL from dbo.OCPR";
+        String sql = "SELECT CntctCode, Name, Position from dbo.OCPR";
         RowMapper<ContactPerson> rowMapper = new ContactPersonRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     public void updateQuotation(SalesQuotation qot) {
-        String sql_quot = "UPDATE dbo.OQUT SET CardCode = ?, CardName = ?, DocDueDate=?, SlpCode = ? WHERE DocEntry = ?";
-        jdbcTemplate.update(sql_quot, qot.getCode(), qot.getName(), qot.getDueDate(), qot.getSaleEmployee(), qot.getId());
+        String sql_quot = "UPDATE dbo.OQUT SET DocCur = ?, DocDueDate = ?, SlpCode = ? WHERE DocEntry = ?";
+        jdbcTemplate.update(sql_quot, qot.getCurrency(), qot.getDueDate(), qot.getSaleEmployee(), qot.getId());
 
         for (SqGrid sqGrid : qot.getListItem()) {
-            String sql_item = "update dbo.QUT1 set ItemCode = ?, Quantity = ?, Price = ?, TaxCode = ?"
+            String sql_item = "update dbo.QUT1 set Quantity = ?"
                     + " where DocEntry = ?";
             //sql1
-            jdbcTemplate.update(sql_item, sqGrid.getItemcode(), sqGrid.getQuantity(), sqGrid.getPrice(), sqGrid.getTaxcode(), sqGrid.getId());
+            jdbcTemplate.update(sql_item, sqGrid.getQuantity(), sqGrid.getId());
         }
+
     }
 
     @Override
     public void deleteQuotation(int id) {
         String sql = "DELETE from dbo.OQUT WHERE DocEntry = ?";
         jdbcTemplate.update(sql, id);
+        String sql_grid = "DELETE from dbo.QUT1 WHERE DocEntry = ?";
+        jdbcTemplate.update(sql_grid, id);
+    }
+
+    public boolean confirmQuotation(Integer quot_id, String stat) {
+        String sql = "update dbo.OQUT SET DocStatus = ? where DocEntry = ?";
+        int update = jdbcTemplate.update(sql, stat, quot_id);
+        return update > 0;
     }
 
 }

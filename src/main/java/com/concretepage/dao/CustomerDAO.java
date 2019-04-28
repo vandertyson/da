@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.concretepage.entity.Customer;
+import com.concretepage.entity.Item;
 import com.concretepage.rowmapper.CustomerRowMapper;
+import com.concretepage.rowmapper.ItemRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 @Transactional
@@ -22,8 +24,7 @@ public class CustomerDAO implements ICustomerDAO {
 
     @Override
     public List<Customer> getAllCustomer() {
-        String sql = "SELECT CardCode,CardName,CntctPrsn,MailAddres,Fax,Phone1,"
-                + "Phone2,SlpCode FROM dbo.OCRD ";
+        String sql = "SELECT * from view_customer ";
         RowMapper<Customer> rowMapper = new CustomerRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -42,25 +43,24 @@ public class CustomerDAO implements ICustomerDAO {
         String sql1 = "Select max(DocEntry) from dbo.OCRD";
         Long newid = jdbcTemplate.queryForObject(sql1, Long.class);
         String sql = "INSERT INTO dbo.OCRD (CardCode,CardName,CntctPrsn,MailAddres,"
-                + "Fax,Phone1,Phone2,DocEntry) values (?,?,?,?,?,?,?,?)";
+                + "Fax,Phone1,Phone2,CreateDate,DocEntry) values (?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, cust.getCode(), cust.getName(), cust.getContactperson(),
-                cust.getFax(), cust.getEmail(), cust.getPhone1(), cust.getPhone2(), newid + 1);
+                cust.getFax(), cust.getEmail(), cust.getPhone1(), cust.getPhone2(), cust.getCreatedate(), newid + 1);
     }
 
     @Override
     public List<Customer> getCustomerWithName(String name) {
-        String sql = "SELECT CardCode,CardName,CntctPrsn,MailAddres,Fax,Phone1,"
-                + "Phone2,DocEntry FROM dbo.OCRD where CardName = ? ";
+        String sql = "SELECT * FROM view_customer where CardName like ? ";
         RowMapper<Customer> rowMapper = new CustomerRowMapper();
-        return this.jdbcTemplate.query(sql, new Object[]{name}, rowMapper);
+        return this.jdbcTemplate.query(sql, new String[]{"%" + name + "%"}, rowMapper);
     }
 
     @Override
     public void updateCustomer(Customer cust) {
-        String sql = "UPDATE dbo.OCRD SET CardName=?, CntctPrsn=?, MailAddres=?, "
-                + "Fax=?, Phone1=?, Phone2=? WHERE CardCode=?";
-        jdbcTemplate.update(sql, cust.getName(), cust.getContactperson(), cust.getEmail(),
-                cust.getFax(), cust.getPhone1(), cust.getPhone2(), cust.getCode());
+        String sql = "UPDATE dbo.OCRD SET CntctPrsn=?, MailAddres=?, "
+                + "Fax=?, Phone1=?, Phone2=?, UpdateDate=? WHERE CardCode=?";
+        jdbcTemplate.update(sql, cust.getContactperson(), cust.getEmail(),
+                cust.getFax(), cust.getPhone1(), cust.getPhone2(), cust.getUpdatedate(), cust.getCode());
     }
 
     @Override
@@ -68,7 +68,15 @@ public class CustomerDAO implements ICustomerDAO {
         String sql = "DELETE FROM dbo.OCRD where CardCode = ?";
         jdbcTemplate.update(sql, code);
     }
-    
-    
+
+    @Override
+    public Customer getCustomerById(String code) {
+        //Day cai query ong sua o day
+        //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
+        String sql = "select * from view_customer where CardCode = ?";
+        RowMapper<Customer> rowMapper = new CustomerRowMapper();
+        Customer cust = jdbcTemplate.queryForObject(sql, rowMapper, code);
+        return cust;
+    }
 
 }

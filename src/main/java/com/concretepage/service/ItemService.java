@@ -48,4 +48,9 @@ public class ItemService implements IItemService {
         return true;
     }
 
+    @Override
+    public Item getItemById(String code) {
+        return DAO.getItemById(code);
+    }
+
 }

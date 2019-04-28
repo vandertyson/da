@@ -18,6 +18,9 @@ public class ItemRowMapper implements RowMapper<Item> {
         item.setUomcode(row.getString("InvntryUom"));
         item.setGroupname(row.getString("ItmsGrpNam"));
         item.setVat(row.getInt("vat"));
+        item.setCreatedate(row.getDate("CreateDate"));
+        item.setUpdatedate(row.getDate("UpdateDate"));
+        item.setUsersign(row.getInt("UserSign"));
         return item;
     }
 

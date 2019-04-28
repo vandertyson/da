@@ -17,4 +17,7 @@ public interface IItemDAO {
     public void updateItem(Item item);
     
     public void deleteItem(String code);
+
+    public Item getItemById(String code);
+    
 }

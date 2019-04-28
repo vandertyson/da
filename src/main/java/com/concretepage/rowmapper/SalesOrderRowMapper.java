@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
-    
+
     @Override
     public SalesOrder mapRow(ResultSet row, int rowNum) throws SQLException {
         SalesOrder head = new SalesOrder();
-        //ten cot luc select ra
         head.setId(row.getInt("DocEntry"));
         head.setDocnum(row.getInt("DocNum"));
         head.setCode(row.getString("CardCode"));
@@ -20,10 +19,8 @@ public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
         head.setCurrency(row.getString("DocCur"));
         head.setSaleEmployee(row.getString("SlpCode"));
         head.setEmployee(row.getString("OwnerCode"));
-        head.setAdd(row.getString("Address2"));
-        head.setAddress(row.getString("Address"));
+        head.setAddress(row.getString("Address2"));
         head.setShipto(row.getString("ShipToCode"));
-        head.setBillto(row.getString("PayToCode"));
         head.setTrasnport(row.getInt("TrnspCode"));
         head.setDocDate(row.getDate("DocDate"));
         head.setDueDate(row.getDate("DocDueDate"));
@@ -36,5 +33,5 @@ public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
         head.setRef(row.getString("Ref1"));
         return head;
     }
-    
+
 }

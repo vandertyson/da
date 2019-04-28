@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.concretepage.entity.SalesQuotation;
-import com.concretepage.daointerface.ISalesQuotationDAO;
 import com.concretepage.entity.ContactPerson;
-import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
+import org.springframework.http.ResponseEntity;
 
 @Service
 public class SalesQuotationService implements ISalesQuotationService {
@@ -58,6 +57,11 @@ public class SalesQuotationService implements ISalesQuotationService {
     @Override
     public List<ContactPerson> getAllContacts() {
         return DAO.getAllContacts();
+    }
+
+    @Override
+    public Boolean confirmQuotation(Integer quot_id, String stat) {
+        return DAO.confirmQuotation(quot_id, stat);
     }
 
 }

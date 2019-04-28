@@ -2,6 +2,7 @@ package com.concretepage.entity;
 
 //ve sau can hien thi them truong gi thi khai bao vao day
 import com.google.gson.Gson;
+import java.util.Date;
 
 public class Customer {
 
@@ -17,6 +18,47 @@ public class Customer {
     private String phone1;
     private String phone2;
     private int slpcode;
+    private Date createdate;
+    private Date updatedate;
+    private int usersign;
+
+    public Customer(String name, String code, String contactperson, String email, String fax, String phone1, String phone2, int slpcode, Date createdate, Date updatedate, int usersign) {
+        this.name = name;
+        this.code = code;
+        this.contactperson = contactperson;
+        this.email = email;
+        this.fax = fax;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.slpcode = slpcode;
+        this.createdate = createdate;
+        this.updatedate = updatedate;
+        this.usersign = usersign;
+    }
+
+    public int getUsersign() {
+        return usersign;
+    }
+
+    public void setUsersign(int usersign) {
+        this.usersign = usersign;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Date getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
+    }
 
     public int getSlpcode() {
         return slpcode;

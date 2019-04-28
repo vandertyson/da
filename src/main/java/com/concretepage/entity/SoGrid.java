@@ -18,14 +18,15 @@ public class SoGrid {
         this.quantity = quantity;
         this.price = price;
         this.currency = currency;
-        this.vatgroup = vatgroup;
-        this.taxcode = taxcode;
         this.warehouse = warehouse;
+        this.vat = vat;
+        this.discount = discount;
+        this.total = total;
+        this.discount = discount;
+        this.uomcode = uomcode;
+        this.openqty = openqty;
 
     }
-
-    private int id;
-    private int linenum;
 
     public int getLinenum() {
         return linenum;
@@ -34,17 +35,36 @@ public class SoGrid {
     public void setLinenum(int linenum) {
         this.linenum = linenum;
     }
+
+    private int id;
+    private int linenum;
     private String itemcode;
     private String description;
     private Double quantity;
     private Double price;
     private Double total;
     private String currency;
-    private String vatgroup;
-    private String taxcode;
+    private int vat;
+    private int discount;
     private String warehouse;
     private String uomcode;
     private Double openqty;
+
+    public int getVat() {
+        return vat;
+    }
+
+    public void setVat(int vat) {
+        this.vat = vat;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
 
     public Double getOpenqty() {
         return openqty;
@@ -124,22 +144,6 @@ public class SoGrid {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public String getVatgroup() {
-        return vatgroup;
-    }
-
-    public void setVatgroup(String vatgroup) {
-        this.vatgroup = vatgroup;
-    }
-
-    public String getTaxcode() {
-        return taxcode;
-    }
-
-    public void setTaxcode(String taxcode) {
-        this.taxcode = taxcode;
     }
 
 }

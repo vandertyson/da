@@ -48,4 +48,9 @@ public class CustomerService implements ICustomerService {
         return true;
     }
 
+    @Override
+    public Customer getCustomerById(String code) {
+        return DAO.getCustomerById(code);
+    }
+
 }

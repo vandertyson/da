@@ -23,8 +23,6 @@ public class SalesOrder {
         this.taxdate = taxdate;
         this.address = address;
         this.shipto = shipto;
-        this.billto = billto;
-        this.add = add;
         this.trasnport = trasnport;
     }
 
@@ -75,9 +73,7 @@ public class SalesOrder {
     private Date duedate;
     private Date taxdate;
     private String address;
-    private String billto;
     private String shipto;
-    private String add;
     private int trasnport;
     private String slpname;
     private String cntname;
@@ -85,6 +81,8 @@ public class SalesOrder {
     private String emplastname;
     private String transportname;
     private String ref;
+    private List<SoGrid> listItem;
+    private List<SalesQuotation> listQuotation;
 
     public String getRef() {
         return ref;
@@ -93,9 +91,6 @@ public class SalesOrder {
     public void setRef(String ref) {
         this.ref = ref;
     }
-
-    private List<SoGrid> listItem;
-    private List<SalesQuotation> listQuotation;
 
     public String getTransportname() {
         return transportname;
@@ -161,28 +156,12 @@ public class SalesOrder {
         this.address = address;
     }
 
-    public String getBillto() {
-        return billto;
-    }
-
-    public void setBillto(String billto) {
-        this.billto = billto;
-    }
-
     public String getShipto() {
         return shipto;
     }
 
     public void setShipto(String shipto) {
         this.shipto = shipto;
-    }
-
-    public String getAdd() {
-        return add;
-    }
-
-    public void setAdd(String add) {
-        this.add = add;
     }
 
     public int getTrasnport() {

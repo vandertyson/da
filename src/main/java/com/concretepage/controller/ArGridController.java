@@ -1,4 +1,5 @@
 package com.concretepage.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,19 @@ import com.concretepage.iservice.IDeliveryGridService;
 @Controller
 @RequestMapping("argrid")
 public class ArGridController {
-	@Autowired
-	private IDeliveryGridService service;
-	@GetMapping("grid/{id}")
-	public ResponseEntity<DeliveryGrid> getSoGridById(@PathVariable("id") Integer id) {
-		DeliveryGrid grid = service.getDeliveryGridById(id);
-		return new ResponseEntity<DeliveryGrid>(grid, HttpStatus.OK);
-	}
-	@GetMapping("deliverygrids")
-	public ResponseEntity<List<DeliveryGrid>> getAllDeliveryGrids() {
-		List<DeliveryGrid> list = service.getAllDeliveryGrids();
-		return new ResponseEntity<List<DeliveryGrid>>(list, HttpStatus.OK);
-	}	
-} 
+
+    @Autowired
+    private IDeliveryGridService service;
+
+    @GetMapping("grid/{id}")
+    public ResponseEntity<DeliveryGrid> getSoGridById(@PathVariable("id") Integer id) {
+        DeliveryGrid grid = service.getDeliveryGridById(id);
+        return new ResponseEntity<DeliveryGrid>(grid, HttpStatus.OK);
+    }
+
+    @GetMapping("deliverygrids")
+    public ResponseEntity<List<DeliveryGrid>> getAllDeliveryGrids() {
+        List<DeliveryGrid> list = service.getAllDeliveryGrids();
+        return new ResponseEntity<List<DeliveryGrid>>(list, HttpStatus.OK);
+    }
+}

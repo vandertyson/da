@@ -6,6 +6,7 @@ import java.util.List;
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
+import org.springframework.http.ResponseEntity;
 
 public interface ISalesQuotationService {
 
@@ -24,4 +25,6 @@ public interface ISalesQuotationService {
     public void deleteQuotation(int id);
 
     public List<ContactPerson> getAllContacts();
+
+    public Boolean confirmQuotation(Integer quot_id, String stat);
 }

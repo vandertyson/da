@@ -19,7 +19,7 @@ public class SqGridRowMapper implements RowMapper<SqGrid> {
         grid.setQuantity(row.getDouble("Quantity"));
         grid.setPrice(row.getDouble("Price"));
         grid.setVat(row.getInt("vat"));
-        grid.setTaxcode(row.getString("TaxCode"));
+        grid.setDiscount(row.getInt("DiscPrcnt"));
         grid.setTotal(row.getDouble("LineTotal"));
         grid.setUomcode(row.getString("UomCode"));
         grid.setLinenum(row.getInt("LineNum"));

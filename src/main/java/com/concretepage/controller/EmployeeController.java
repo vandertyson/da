@@ -1,5 +1,6 @@
 package com.concretepage.controller;
 
+import com.concretepage.entity.Customer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,12 @@ public class EmployeeController {
     public ResponseEntity<Boolean> deleteEmployee(@PathVariable("empID") Integer empID) {
         service.deleteEmployee(empID);
         return new ResponseEntity<Boolean>(HttpStatus.OK);
+    }
+
+    @GetMapping("employee/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int empID) {
+        Employee emp = service.getEmployeeById(empID);
+        return new ResponseEntity<Employee>(emp, HttpStatus.OK);
     }
 
 }

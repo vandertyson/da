@@ -11,7 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.concretepage.entity.ArInvoice;
 import com.concretepage.rowmapper.ArInvoiceRowMapper;
 import com.concretepage.daointerface.IArInvoiceDAO;
+import com.concretepage.entity.ArGrid;
+import com.concretepage.entity.Delivery;
 import com.concretepage.entity.DeliveryGrid;
+import com.concretepage.entity.Transport;
+import com.concretepage.rowmapper.ArGridRowMapper;
+import com.concretepage.rowmapper.DeliveryGridRowMapper;
+import com.concretepage.rowmapper.TransportRowMapper;
 
 @Transactional
 @Repository
@@ -22,21 +28,19 @@ public class ArInvoiceDAO implements IArInvoiceDAO {
 
     @Override
     public ArInvoice getInvoiceById(int invID) {
-        //Day cai query ong sua o day
-        //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
-        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
-                + "Address2,TrnspCode FROM dbo.OINV WHERE ID = ?";
+        String sql = "SELECT * from view_ar WHERE DocEntry = ?";
         RowMapper<ArInvoice> rowMapper = new ArInvoiceRowMapper();
         ArInvoice inv = jdbcTemplate.queryForObject(sql, rowMapper, invID);
+        String sql_items = "select * from dbo.INV1 where DocEntry = ?";
+        RowMapper<ArGrid> rowMapper_item = new ArGridRowMapper();
+        List<ArGrid> items = jdbcTemplate.query(sql_items, rowMapper_item, invID);
+        inv.setListItem(items);
         return inv;
     }
 
     @Override
     public List<ArInvoice> getAllInvoices() {
-        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
-                + "Address2,TrnspCode FROM dbo.OINV";
+        String sql = "SELECT * FROM view_ar";
         RowMapper<ArInvoice> rowMapper = new ArInvoiceRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -53,26 +57,54 @@ public class ArInvoiceDAO implements IArInvoiceDAO {
         String sql1 = "Select max(DocNum) from dbo.OINV";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
         String sqlll = "INSERT INTO dbo.OINV (DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,"
+                + "CntctCode,DocCur,SlpCode,OwnerCode,DocDate,"
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
-                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?)";
+                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, inv.getCode(),
-                inv.getName(), inv.getEmployee(), inv.getDocDate(),
+                inv.getName(), inv.getContactName(), inv.getCurrency(), inv.getSaleEmployee(), inv.getEmployee(), inv.getDocDate(),
                 inv.getDueDate(), inv.getTaxDate(), inv.getShipto(),
                 inv.getAddress(), inv.getTrasnport());
-        String sql3 = "Select max(DocEntry) from dbo.INV1";
-        Long newgridid = jdbcTemplate.queryForObject(sql3, Long.class);
-        String sql4 = "Select max(LineNum) from dbo.DLN1";
-        Long newgridid1 = jdbcTemplate.queryForObject(sql3, Long.class);
-        for (DeliveryGrid delvGrid : inv.getListItem()) {
+
+        for (ArGrid arGrid : inv.getListItem()) {
+            String sql4 = "Select max(LineNum) from dbo.DLN1";
+            Long new_linenum = jdbcTemplate.queryForObject(sql4, Long.class);
+
             String sql2 = "INSERT INTO dbo.INV1 (DocEntry,LineNum,ItemCode,Dscription,"
-                    + "Quantity,Price,Currency,VatGroup,TaxCode,LineTotal) "
+                    + "Quantity,Price,Currency,vat,DiscPrcnt,LineTotal,UomCode,WhsCode) "
                     + "values (?,?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql2, newgridid + inv.getListItem().indexOf(delvGrid) + 1,
-                    newgridid + inv.getListItem().indexOf(delvGrid) + 1, delvGrid.getItemcode(), delvGrid.getDescription(),
-                    delvGrid.getQuantity(), delvGrid.getPrice(), delvGrid.getCurrency(),
-                    delvGrid.getVatgroup(), delvGrid.getTaxcode(), delvGrid.getTotal());
+            jdbcTemplate.update(sql2, newDocEntry + inv.getListItem().indexOf(arGrid) + 1,
+                    new_linenum + inv.getListItem().indexOf(arGrid) + 1, arGrid.getItemcode(), arGrid.getDescription(),
+                    arGrid.getQuantity(), arGrid.getPrice(), arGrid.getCurrency(),
+                    arGrid.getVatgroup(), arGrid.getTaxcode(), arGrid.getTotal(),
+                    arGrid.getUomcode(), arGrid.getWarehouse());
         }
     }
 
+    @Override
+    public List<Transport> getAllTransports() {
+        String sql = "SELECT TrnspCode, TrnspName from dbo.OSHP";
+        RowMapper<Transport> rowMapper = new TransportRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public void updateInvoice(Delivery delv) {
+        String sql = "UPDATE dbo.ODLN SET  DocDueDate=? WHERE DocEntry=? ";
+        jdbcTemplate.update(sql, delv.getDueDate(), delv.getId());
+
+        for (DeliveryGrid delvGrid : delv.getListItem()) {
+            String sql_item = "update dbo.DLN1 set  Quantity = ?"
+                    + " where DocEntry = ?";
+            //sql1
+            jdbcTemplate.update(sql_item, delvGrid.getQuantity(), delvGrid.getId());
+
+        }
+    }
+
+    @Override
+    public void deleteInvoice(int id) {
+        String sql = "DELETE from dbo.ODLN WHERE DocEntry = ?";
+        jdbcTemplate.update(sql, id);
+        String sql_grid = "DELETE from dbo.DLN1 WHERE DocEntry = ?";
+        jdbcTemplate.update(sql_grid, id);
+    }
 }

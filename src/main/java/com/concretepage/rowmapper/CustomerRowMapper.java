@@ -20,6 +20,9 @@ public class CustomerRowMapper implements RowMapper<Customer> {
         cust.setPhone1(row.getString("Phone1"));
         cust.setPhone2(row.getString("Phone2"));
         cust.setSlpcode(row.getInt("SlpCode"));
+        cust.setCreatedate(row.getDate("CreateDate"));
+        cust.setUpdatedate(row.getDate("UpdateDate"));
+        cust.setUsersign(row.getInt("UserSign"));
         return cust;
     }
     

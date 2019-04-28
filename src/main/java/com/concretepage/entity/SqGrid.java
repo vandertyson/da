@@ -19,8 +19,6 @@ public class SqGrid {
         this.price = price;
         this.currency = currency;
         this.vat = vat;
-        this.taxcode = taxcode;
-
     }
 
     private int id;
@@ -31,6 +29,17 @@ public class SqGrid {
     private Double total;
     private String currency;
     private int vat;
+    private int discount;
+    private String uomcode;
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+    private int linenum;
 
     public int getVat() {
         return vat;
@@ -39,9 +48,6 @@ public class SqGrid {
     public void setVat(int vat) {
         this.vat = vat;
     }
-    private String taxcode;
-    private String uomcode;
-    private int linenum;
 
     public int getLinenum() {
         return linenum;
@@ -113,14 +119,6 @@ public class SqGrid {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public String getTaxcode() {
-        return taxcode;
-    }
-
-    public void setTaxcode(String taxcode) {
-        this.taxcode = taxcode;
     }
 
 }

@@ -16,4 +16,6 @@ public interface ICustomerDAO {
     public List<Customer> getAllCustomer(String top);
 
     public List<Customer> getCustomerWithName(String name);
+
+    public Customer getCustomerById(String code);
 }

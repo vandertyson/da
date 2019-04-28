@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
  * @author Admin
  */
 public class EmployeeRowMapper implements RowMapper<Employee> {
-
+    
     @Override
     public Employee mapRow(ResultSet row, int rowNum) throws SQLException {
         Employee emp = new Employee();
@@ -24,7 +24,17 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
         emp.setLastname(row.getString("lastName"));
         emp.setDept(row.getInt("dept"));
         emp.setSex(row.getString("sex"));
-        emp.setUserid(row.getInt("userId"));
+        emp.setTel(row.getString("officeTel"));
+        emp.setEmail(row.getString("email"));
+        emp.setJobtitle(row.getString("jobTitle"));
+        emp.setHomecity(row.getString("homeCity"));
+        emp.setUpdatedate(row.getDate("UpdateDate"));
+        emp.setStartdate(row.getDate("startDate"));
+        emp.setDeptname(row.getString("Name"));
+        emp.setUsersign(row.getInt("UserSign"));
+        emp.setBirthdate(row.getDate("birthDate"));
+        emp.setBankcode(row.getString("bankCode"));
+        emp.setBankacount(row.getString("bankAcount"));
         return emp;
     }
 }

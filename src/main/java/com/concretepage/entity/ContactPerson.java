@@ -14,19 +14,15 @@ public class ContactPerson {
     private int code;
     private String name;
     private String position;
-    private String phone;
-    private String email;
 
     public ContactPerson(int code, String name, String position, String phone, String email) {
         this.code = code;
         this.name = name;
         this.position = position;
-        this.phone = phone;
-        this.email = email;
+
     }
 
     public ContactPerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCode() {
@@ -53,19 +49,4 @@ public class ContactPerson {
         this.position = position;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

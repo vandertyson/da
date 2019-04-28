@@ -19,4 +19,6 @@ public interface IItemService {
     boolean updateItem(Item item);
     
     boolean deleteItem(String code);
+
+    public Item getItemById(String code);
 }

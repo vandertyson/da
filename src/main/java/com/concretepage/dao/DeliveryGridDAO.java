@@ -25,7 +25,7 @@ public class DeliveryGridDAO implements IDeliveryGridDAO {
         //Day cai query ong sua o day
         //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
         String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,"
-                + "Price,Currency,VatGroup,UomCode,TaxCode,LineTotal,WhsCode FROM dbo.DLN1";
+                + "Price,Currency,vat,UomCode,DiscPrcnt,LineTotal,WhsCode,OpenQty FROM dbo.DLN1";
         RowMapper<DeliveryGrid> rowMapper = new DeliveryGridRowMapper();
         DeliveryGrid grid = jdbcTemplate.queryForObject(sql, rowMapper, gridID);
         return grid;
@@ -34,7 +34,7 @@ public class DeliveryGridDAO implements IDeliveryGridDAO {
     @Override
     public List<DeliveryGrid> getAllDeliveryGrids() {
         String sql = "SELECT DocEntry,LineNum,ItemCode,Dscription,Quantity,"
-                + "Price,Currency,VatGroup,UomCode,TaxCode,LineTotal,WhsCode FROM dbo.DLN1";
+                + "Price,Currency,vat,UomCode,DiscPrcnt,LineTotal,WhsCode,OpenQty FROM dbo.DLN1";
         RowMapper<DeliveryGrid> rowMapper = new DeliveryGridRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }

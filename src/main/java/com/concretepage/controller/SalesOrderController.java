@@ -36,13 +36,13 @@ public class SalesOrderController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("salesorder/{id}")
+    @GetMapping("Order/{id}")
     public ResponseEntity<SalesOrder> getOrderById(@PathVariable("id") Integer id) {
         SalesOrder ord = service.getOrderById(id);
         return new ResponseEntity<SalesOrder>(ord, HttpStatus.OK);
     }
 
-    @GetMapping("salesorders")
+    @GetMapping("Orders")
     public ResponseEntity<List<SalesOrder>> getAllOrders() {
         List<SalesOrder> list = service.getAllOrder();
         return new ResponseEntity<List<SalesOrder>>(list, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class SalesOrderController {
         return new ResponseEntity<Long>(newOrderID, HttpStatus.OK);
     }
 
-    @GetMapping("saleemployee")
+    @GetMapping("saleEmployee")
     public ResponseEntity<List<SaleEmployee>> getAllSaleEmployees() {
         List<SaleEmployee> list = saleemployeeService.getAllSaleEmployees();
         return new ResponseEntity<List<SaleEmployee>>(list, HttpStatus.OK);
@@ -91,13 +91,13 @@ public class SalesOrderController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @GetMapping("getQuotationInfo")
+    @GetMapping("getInfo")
     public ResponseEntity<List<SalesQuotation>> getListQuotation() {
         List<SalesQuotation> list = service.getListQuotation();
         return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("addQuotationInfo")
+    @PostMapping("addInfo")
     public ResponseEntity<Boolean> copyQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
 
         service.copyQuotation(quot);

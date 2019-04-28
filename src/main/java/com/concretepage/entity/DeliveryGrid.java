@@ -18,23 +18,55 @@ public class DeliveryGrid {
         this.quantity = quantity;
         this.price = price;
         this.currency = currency;
-        this.vatgroup = vatgroup;
-        this.taxcode = taxcode;
         this.warehouse = warehouse;
 
     }
 
     private int id;
+    private int linenum;
     private String itemcode;
     private String description;
     private Double quantity;
     private Double price;
     private Double total;
     private String currency;
-    private String vatgroup;
-    private String taxcode;
+    private int vat;
+    private int discount;
     private String warehouse;
     private String uomcode;
+    private Double openqty;
+
+    public int getLinenum() {
+        return linenum;
+    }
+
+    public void setLinenum(int linenum) {
+        this.linenum = linenum;
+    }
+
+    public int getVat() {
+        return vat;
+    }
+
+    public void setVat(int vat) {
+        this.vat = vat;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Double getOpenqty() {
+        return openqty;
+    }
+
+    public void setOpenqty(Double openqty) {
+        this.openqty = openqty;
+    }
 
     public String getUomcode() {
         return uomcode;
@@ -106,22 +138,6 @@ public class DeliveryGrid {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public String getVatgroup() {
-        return vatgroup;
-    }
-
-    public void setVatgroup(String vatgroup) {
-        this.vatgroup = vatgroup;
-    }
-
-    public String getTaxcode() {
-        return taxcode;
-    }
-
-    public void setTaxcode(String taxcode) {
-        this.taxcode = taxcode;
     }
 
 }

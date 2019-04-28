@@ -18,4 +18,6 @@ public interface ICustomerService {
     public List<Customer> getAllCustomer(String top);
 
     public List<Customer> findCustomerByName(String name);
+
+    public Customer getCustomerById(String code);
 }

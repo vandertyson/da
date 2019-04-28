@@ -13,7 +13,10 @@ import com.concretepage.rowmapper.DeliveryRowMapper;
 import com.concretepage.daointerface.IDeliveryDAO;
 import com.concretepage.entity.DeliveryGrid;
 import com.concretepage.entity.SalesOrder;
+import com.concretepage.entity.SoGrid;
 import com.concretepage.entity.Transport;
+import com.concretepage.rowmapper.DeliveryGridRowMapper;
+import com.concretepage.rowmapper.SoGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
 
 @Transactional
@@ -25,21 +28,19 @@ public class DeliveryDAO implements IDeliveryDAO {
 
     @Override
     public Delivery getDeliveryById(int delvID) {
-        //Day cai query ong sua o day
-        //De y cai RowMapper. ben rowmapper can bao nhieu truong thi o day select bay nhieu truong
-        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
-                + "Address2,TrnspCode FROM dbo.ODLN WHERE ID = ?";
+        String sql = "SELECT * from view_delivery where DocEntry = ?";
         RowMapper<Delivery> rowMapper = new DeliveryRowMapper();
         Delivery delv = jdbcTemplate.queryForObject(sql, rowMapper, delvID);
+        String sql_items = "select * from dbo.DLN1 where DocEntry = ?";
+        RowMapper<DeliveryGrid> rowMapper_item = new DeliveryGridRowMapper();
+        List<DeliveryGrid> items = jdbcTemplate.query(sql_items, rowMapper_item, delvID);
+        delv.setListItem(items);
         return delv;
     }
 
     @Override
     public List<Delivery> getAllDeliveries() {
-        String sql = "SELECT DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,DocDueDate,TaxDate,ShipToCode,"
-                + "Address2,TrnspCode FROM dbo.ODLN";
+        String sql = "SELECT * from view_delivery";
         RowMapper<Delivery> rowMapper = new DeliveryRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -56,25 +57,24 @@ public class DeliveryDAO implements IDeliveryDAO {
         String sql1 = "Select max(DocNum) from dbo.ODLN";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
         String sqlll = "INSERT INTO dbo.ODLN (DocEntry,DocNum,CardCode,CardName,"
-                + "OwnerCode,DocDate,"
+                + "CntctCode,DocCur,SlpCode,OwnerCode,DocDate,"
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
-                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?)";
+                + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, delv.getCode(),
-                delv.getName(), delv.getEmployee(), delv.getDocDate(),
+                delv.getName(), delv.getContactName(), delv.getCurrency(), delv.getSaleEmployee(), delv.getEmployee(), delv.getDocDate(),
                 delv.getDueDate(), delv.getTaxDate(), delv.getShipto(),
                 delv.getAddress(), delv.getTrasnport());
-        String sql3 = "Select max(DocEntry) from dbo.DLN1";
-        Long newgridid = jdbcTemplate.queryForObject(sql3, Long.class);
-        String sql4 = "Select max(LineNum) from dbo.DLN1";
-        Long newgridid1 = jdbcTemplate.queryForObject(sql3, Long.class);
+
         for (DeliveryGrid delvGrid : delv.getListItem()) {
+            String sql4 = "Select max(LineNum) from dbo.DLN1";
+            Long new_linenum = jdbcTemplate.queryForObject(sql4, Long.class);
             String sql2 = "INSERT INTO dbo.DLN1 (DocEntry,LineNum,ItemCode,Dscription,"
-                    + "Quantity,Price,Currency,VatGroup,TaxCode,LineTotal) "
-                    + "values (?,?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql2, newgridid + delv.getListItem().indexOf(delvGrid) + 1,
-                    newgridid + delv.getListItem().indexOf(delvGrid) + 1, delvGrid.getItemcode(), delvGrid.getDescription(),
+                    + "Quantity,Price,Currency,vat,DiscPrcnt,LineTotal,UomCode,WhsCode) "
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            jdbcTemplate.update(sql2, newDocEntry + delv.getListItem().indexOf(delvGrid) + 1,
+                    new_linenum + delv.getListItem().indexOf(delvGrid) + 1, delvGrid.getItemcode(), delvGrid.getDescription(),
                     delvGrid.getQuantity(), delvGrid.getPrice(), delvGrid.getCurrency(),
-                    delvGrid.getVatgroup(), delvGrid.getTaxcode(), delvGrid.getTotal());
+                    delvGrid.getVat(), delvGrid.getDiscount(), delvGrid.getTotal(), delvGrid.getUomcode(), delvGrid.getWarehouse());
         }
     }
 
@@ -86,15 +86,23 @@ public class DeliveryDAO implements IDeliveryDAO {
     }
 
     public void updateDelivery(Delivery delv) {
-        String sql = "UPDATE dbo.ODLN SET CardCode=?, CardName=?, DocDueDate=? WHERE DocEntry=? ";
-        jdbcTemplate.update(sql, delv.getCode(), delv.getName(), delv.getDueDate(), delv.getId());
+        String sql = "UPDATE dbo.ODLN SET  DocDueDate=? WHERE DocEntry=? ";
+        jdbcTemplate.update(sql, delv.getDueDate(), delv.getId());
 
+        for (DeliveryGrid delvGrid : delv.getListItem()) {
+            String sql_item = "update dbo.DLN1 set  Quantity = ?"
+                    + " where DocEntry = ?";
+            //sql1
+            jdbcTemplate.update(sql_item, delvGrid.getQuantity(), delvGrid.getId());
+
+        }
     }
 
     @Override
     public void deleteDelivery(int id) {
         String sql = "DELETE from dbo.ODLN WHERE DocEntry = ?";
         jdbcTemplate.update(sql, id);
+        String sql_grid = "DELETE from dbo.DLN1 WHERE DocEntry = ?";
+        jdbcTemplate.update(sql_grid, id);
     }
-
 }

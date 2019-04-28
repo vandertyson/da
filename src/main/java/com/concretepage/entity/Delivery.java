@@ -9,14 +9,14 @@ public class Delivery {
     public Delivery() {
     }
 
-    public Delivery(int id, int series, String name, String code, String contactpersonname,
-            String contactpersoncode, String saleemployee, String employee,
-            Date docdate, Date duedate, Date taxdate,
-            String address, String shipto, int trasnport) {
-        super();
+    public Delivery(int id, String name, String code, int docnum, String contactpersonname, String currency, String saleemployee, String employee, Date docdate, Date duedate, Date taxdate, String address, String billto, String shipto, String add, int trasnport, String slpname, String cntname, String emfirstname, String emplastname, String transportname, String ref, List<DeliveryGrid> listItem) {
         this.id = id;
         this.name = name;
         this.code = code;
+        this.docnum = docnum;
+        this.contactpersonname = contactpersonname;
+        this.currency = currency;
+        this.saleemployee = saleemployee;
         this.employee = employee;
         this.docdate = docdate;
         this.duedate = duedate;
@@ -24,6 +24,13 @@ public class Delivery {
         this.address = address;
         this.shipto = shipto;
         this.trasnport = trasnport;
+        this.slpname = slpname;
+        this.cntname = cntname;
+        this.emfirstname = emfirstname;
+        this.emplastname = emplastname;
+        this.transportname = transportname;
+        this.ref = ref;
+        this.listItem = listItem;
     }
 
     public String getCode() {
@@ -37,6 +44,10 @@ public class Delivery {
     private int id;
     private String name;
     private String code;
+    private int docnum;
+    private String contactpersonname;
+    private String currency;
+    private String saleemployee;
     private String employee;
     private Date docdate;
     private Date duedate;
@@ -44,7 +55,85 @@ public class Delivery {
     private String address;
     private String shipto;
     private int trasnport;
-    private int docnum;
+    private String slpname;
+    private String cntname;
+    private String emfirstname;
+    private String emplastname;
+    private String transportname;
+    private String ref;
+    private List<DeliveryGrid> listItem;
+
+    public String getContactName() {
+        return contactpersonname;
+    }
+
+    public void setContactName(String contactpersonname) {
+        this.contactpersonname = contactpersonname;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getSaleEmployee() {
+        return saleemployee;
+    }
+
+    public void setSaleEmployee(String saleemployee) {
+        this.saleemployee = saleemployee;
+    }
+
+    public String getSlpname() {
+        return slpname;
+    }
+
+    public void setSlpname(String slpname) {
+        this.slpname = slpname;
+    }
+
+    public String getCntname() {
+        return cntname;
+    }
+
+    public void setCntname(String cntname) {
+        this.cntname = cntname;
+    }
+
+    public String getEmfirstname() {
+        return emfirstname;
+    }
+
+    public void setEmfirstname(String emfirstname) {
+        this.emfirstname = emfirstname;
+    }
+
+    public String getEmplastname() {
+        return emplastname;
+    }
+
+    public void setEmplastname(String emplastname) {
+        this.emplastname = emplastname;
+    }
+
+    public String getTransportname() {
+        return transportname;
+    }
+
+    public void setTransportname(String transportname) {
+        this.transportname = transportname;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
 
     public int getDocnum() {
         return docnum;
@@ -53,7 +142,6 @@ public class Delivery {
     public void setDocnum(int docnum) {
         this.docnum = docnum;
     }
-    private List<DeliveryGrid> listItem;
 
     public List<DeliveryGrid> getListItem() {
         return listItem;
