@@ -10,9 +10,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.concretepage.entity.Item;
+import com.concretepage.entity.ItemGroup;
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.Transport;
+import com.concretepage.rowmapper.ItemGroupRowMapper;
 import com.concretepage.rowmapper.ItemRowMapper;
 import com.concretepage.rowmapper.SalesQuotationRowMapper;
+import com.concretepage.rowmapper.TransportRowMapper;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,5 +81,12 @@ public class ItemDAO implements IItemDAO {
         RowMapper<Item> rowMapper = new ItemRowMapper();
         Item item = jdbcTemplate.queryForObject(sql, rowMapper, code);
         return item;
+    }
+
+    @Override
+    public List<ItemGroup> getAllGroups() {
+        String sql = "select * from dbo.OITB";
+        RowMapper<ItemGroup> rowMapper = new ItemGroupRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper);
     }
 }

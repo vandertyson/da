@@ -13,6 +13,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\ArIn
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IArticleService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\DeliveryGridRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\UsersDAO.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Department.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IUsersService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\SalesOrder.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\SqGrid.java
@@ -31,6 +32,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\MyApplicatio
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Delivery.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Draft.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\ContactPersonRowMapper.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\DashboardController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IEmployeeService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\UsersService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\UsersRowMapper.java
@@ -90,6 +92,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Emplo
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IArInvoiceService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IItemService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\CustomerDAO.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\DepartmentRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\IItemDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\SqGridController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\SoGridController.java

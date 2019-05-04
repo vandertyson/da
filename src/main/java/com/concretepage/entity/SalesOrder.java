@@ -9,7 +9,7 @@ public class SalesOrder {
     public SalesOrder(int id, int series, String name, String code, String contactpersonname,
             String currency, String saleemployee, String employee,
             Date docdate, Date duedate, Date taxdate,
-            String address, String shipto, String billto, String add, int trasnport) {
+            String address, String shipto, String billto, String add, int transport) {
         super();
         this.id = id;
         this.name = name;
@@ -23,7 +23,7 @@ public class SalesOrder {
         this.taxdate = taxdate;
         this.address = address;
         this.shipto = shipto;
-        this.trasnport = trasnport;
+        this.transport = transport;
     }
 
     public SalesOrder() {
@@ -74,7 +74,7 @@ public class SalesOrder {
     private Date taxdate;
     private String address;
     private String shipto;
-    private int trasnport;
+    private int transport;
     private String slpname;
     private String cntname;
     private String emfirstname;
@@ -165,11 +165,11 @@ public class SalesOrder {
     }
 
     public int getTrasnport() {
-        return trasnport;
+        return transport;
     }
 
     public void setTrasnport(int trasnport) {
-        this.trasnport = trasnport;
+        this.transport = trasnport;
     }
 
     public String getName() {

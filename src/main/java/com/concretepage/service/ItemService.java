@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.concretepage.daointerface.IItemDAO;
 import com.concretepage.entity.Item;
+import com.concretepage.entity.ItemGroup;
 
 @Service
 public class ItemService implements IItemService {
@@ -51,6 +52,11 @@ public class ItemService implements IItemService {
     @Override
     public Item getItemById(String code) {
         return DAO.getItemById(code);
+    }
+
+    @Override
+    public List<ItemGroup> getAllGroups() {
+        return DAO.getAllGroups();
     }
 
 }

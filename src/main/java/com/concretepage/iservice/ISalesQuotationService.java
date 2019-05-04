@@ -27,4 +27,6 @@ public interface ISalesQuotationService {
     public List<ContactPerson> getAllContacts();
 
     public Boolean confirmQuotation(Integer quot_id, String stat);
+        
+    public List<SalesQuotation> getAllQuotation(String Status);
 }

@@ -1,6 +1,7 @@
 package com.concretepage.controller;
 
 import com.concretepage.entity.Customer;
+import com.concretepage.entity.Department;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.concretepage.entity.Employee;
+import com.concretepage.entity.SaleEmployee;
 import com.concretepage.iservice.IEmployeeService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +62,12 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int empID) {
         Employee emp = service.getEmployeeById(empID);
         return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+    }
+
+    @GetMapping("department")
+    public ResponseEntity<List<Department>> getAllDepartments() {
+        List<Department> list = service.getAllDepartments();
+        return new ResponseEntity<List<Department>>(list, HttpStatus.OK);
     }
 
 }

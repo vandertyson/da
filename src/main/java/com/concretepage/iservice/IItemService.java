@@ -3,6 +3,7 @@ package com.concretepage.iservice;
 import java.util.List;
 
 import com.concretepage.entity.Item;
+import com.concretepage.entity.ItemGroup;
 
 public interface IItemService {
 
@@ -21,4 +22,6 @@ public interface IItemService {
     boolean deleteItem(String code);
 
     public Item getItemById(String code);
+
+    public List<ItemGroup> getAllGroups();
 }

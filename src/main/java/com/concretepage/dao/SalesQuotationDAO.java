@@ -58,14 +58,14 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
         String sql_insert = "INSERT INTO dbo.OQUT (DocEntry,DocNum,CardCode,CardName,"
                 + "CntctCode,DocCur,SlpCode,OwnerCode,DocDate,"
-                + "DocDueDate,TaxDate,DocStatus) values (?,?,?,"
+                + "DocDueDate,TaxDate) values (?,?,?,"
                 + "?,?,?,"
-                + "?,?,?,?,?,?)";
-        quot.setDocstatus("0");
+                + "?,?,?,?,?)";
+        //quot.setDocstatus("0");
         jdbcTemplate.update(sql_insert, newDocEntry + 1, newDocNum + 1,
                 quot.getCode(), quot.getName(), quot.getContactCode(), quot.getCurrency(),
                 quot.getSaleEmployee(), quot.getEmployee(), quot.getDocDate(),
-                quot.getDueDate(), quot.getTaxDate(), "0");
+                quot.getDueDate(), quot.getTaxDate());
 
         for (SqGrid sqGrid : quot.getListItem()) {
             String sql4 = "Select max(LineNum) from dbo.QUT1";
@@ -125,5 +125,12 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         int update = jdbcTemplate.update(sql, stat, quot_id);
         return update > 0;
     }
-
+    
+    public List<SalesQuotation> getQuotByStatus(String status) {
+        String sql = "select * from view_quotation where DocStatus = ? order by DocEntry DESC";
+        RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper, status);
+    }
+    
+    //public 
 }

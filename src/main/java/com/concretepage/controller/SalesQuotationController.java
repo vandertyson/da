@@ -44,9 +44,14 @@ public class SalesQuotationController {
     }
 
     @GetMapping("quotations")
-    public ResponseEntity<List<SalesQuotation>> getAllQuotations() {
-        List<SalesQuotation> list = service.getAllQuotation();
-        return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+    public ResponseEntity<List<SalesQuotation>> getAllQuotations(@RequestParam(value = "status", required = false) String status) {
+        if (status == null) {
+            List<SalesQuotation> list = service.getAllQuotation();
+            return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+        }else{
+            List<SalesQuotation> list = service.getAllQuotation(status);
+            return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+        }
     }
 
     @GetMapping("newid")

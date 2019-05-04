@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.concretepage.entity.Item;
+import com.concretepage.entity.ItemGroup;
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.Transport;
 import com.concretepage.iservice.IItemService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +70,12 @@ public class ItemController {
     public ResponseEntity<Item> getItemById(@PathVariable("id") String code) {
         Item item = service.getItemById(code);
         return new ResponseEntity<Item>(item, HttpStatus.OK);
+    }
+
+    @GetMapping("group")
+    public ResponseEntity<List<ItemGroup>> getAllGroups() {
+        List<ItemGroup> list = service.getAllGroups();
+        return new ResponseEntity<List<ItemGroup>>(list, HttpStatus.OK);
     }
 
 }

@@ -2,6 +2,7 @@ package com.concretepage.daointerface;
 
 import java.util.List;
 import com.concretepage.entity.Item;
+import com.concretepage.entity.ItemGroup;
 
 public interface IItemDAO {
 
@@ -19,5 +20,7 @@ public interface IItemDAO {
     public void deleteItem(String code);
 
     public Item getItemById(String code);
+
+    public List<ItemGroup> getAllGroups();
     
 }

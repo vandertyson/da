@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.concretepage.entity.Employee;
 import com.concretepage.daointerface.IEmployeeDAO;
 import com.concretepage.entity.Customer;
+import com.concretepage.entity.Department;
 import com.concretepage.iservice.IEmployeeService;
 
 @Service
@@ -45,6 +46,11 @@ public class EmployeeService implements IEmployeeService {
     public boolean deleteEmployee(int empID) {
         DAO.deleteEmployee(empID);
         return true;
+    }
+
+    @Override
+    public List<Department> getAllDepartments() {
+        return DAO.getAllDepartments();
     }
 
 }

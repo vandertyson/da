@@ -63,5 +63,10 @@ public class SalesQuotationService implements ISalesQuotationService {
     public Boolean confirmQuotation(Integer quot_id, String stat) {
         return DAO.confirmQuotation(quot_id, stat);
     }
+    
+    @Override
+    public List<SalesQuotation> getAllQuotation(String Status) {
+        return DAO.getQuotByStatus(Status);
+    }
 
 }

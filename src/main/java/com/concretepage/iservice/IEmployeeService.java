@@ -1,6 +1,7 @@
 package com.concretepage.iservice;
 
 import com.concretepage.entity.Customer;
+import com.concretepage.entity.Department;
 import java.util.List;
 
 import com.concretepage.entity.Employee;
@@ -19,5 +20,7 @@ public interface IEmployeeService {
     public List<Employee> findEmployeeByName(String name);
 
     public Employee getEmployeeById(int empID);
+
+    public List<Department> getAllDepartments();
 
 }
