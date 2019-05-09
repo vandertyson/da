@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
@@ -43,65 +44,109 @@ public class SalesOrderController {
     }
 
     @GetMapping("Orders")
-    public ResponseEntity<List<SalesOrder>> getAllOrders() {
-        List<SalesOrder> list = service.getAllOrder();
-        return new ResponseEntity<List<SalesOrder>>(list, HttpStatus.OK);
+    public ResponseEntity<List<SalesOrder>> getAllOrders(@RequestParam(value = "status", required = false) String status) {
+        if (status == null) {
+            List<SalesOrder> list = service.getAllOrder();
+            return new ResponseEntity<List<SalesOrder>>(list, HttpStatus.OK);
+        } else {
+            List<SalesOrder> list = service.getAllOrder(status);
+            return new ResponseEntity<List<SalesOrder>>(list, HttpStatus.OK);
+        }
     }
 
-    @GetMapping("newid")
-    public ResponseEntity<Long> getNewIDOrder() {
+        @GetMapping("newid")
+        public ResponseEntity<Long> getNewIDOrder
+        
+            () {
         Long newOrderID = service.getNewOrderID();
-        return new ResponseEntity<Long>(newOrderID, HttpStatus.OK);
-    }
+            return new ResponseEntity<Long>(newOrderID, HttpStatus.OK);
+        }
 
-    @GetMapping("saleEmployee")
-    public ResponseEntity<List<SaleEmployee>> getAllSaleEmployees() {
+        @GetMapping("saleEmployee")
+        public ResponseEntity<List<SaleEmployee>> getAllSaleEmployees
+        
+            () {
         List<SaleEmployee> list = saleemployeeService.getAllSaleEmployees();
-        return new ResponseEntity<List<SaleEmployee>>(list, HttpStatus.OK);
-    }
+            return new ResponseEntity<List<SaleEmployee>>(list, HttpStatus.OK);
+        }
 
-    @GetMapping("employee")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
+        @GetMapping("employee")
+        public ResponseEntity<List<Employee>> getAllEmployees
+        
+            () {
         List<Employee> list = employeeService.getAllEmployees();
-        return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
-    }
+            return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
+        }
 
-    @PostMapping("addOrder")
-    public ResponseEntity<Boolean> addOrder(@RequestBody SalesOrder ord, UriComponentsBuilder builder) {
+        @PostMapping("addOrder")
+        public ResponseEntity<Boolean> addOrder
+        (@RequestBody
+        SalesOrder ord, UriComponentsBuilder builder
+        
+            ) {
 
         service.addnewOrder(ord);
-        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
-    }
+            return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+        }
 
-    @GetMapping("transport")
-    public ResponseEntity<List<Transport>> getAllTransports() {
+        @GetMapping("transport")
+        public ResponseEntity<List<Transport>> getAllTransports
+        
+            () {
         List<Transport> list = service.getAllTransports();
-        return new ResponseEntity<List<Transport>>(list, HttpStatus.OK);
-    }
+            return new ResponseEntity<List<Transport>>(list, HttpStatus.OK);
+        }
 
-    @PutMapping("updateOrder")
-    public ResponseEntity<SalesOrder> updateOrder(@RequestBody SalesOrder ord) {
+        @PutMapping("updateOrder")
+        public ResponseEntity<SalesOrder> updateOrder
+        (@RequestBody
+        SalesOrder ord
+        
+            ) {
         service.updateOrder(ord);
-        return new ResponseEntity<SalesOrder>(ord, HttpStatus.OK);
-    }
+            return new ResponseEntity<SalesOrder>(ord, HttpStatus.OK);
+        }
 
-    @DeleteMapping("deleteOrder/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable("id") Integer id) {
+        @DeleteMapping("deleteOrder/{id}")
+        public ResponseEntity<Void> deleteOrder
+        (@PathVariable("id")
+        Integer id
+        
+            ) {
         service.deleteOrder(id);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
 
-    @GetMapping("getInfo")
-    public ResponseEntity<List<SalesQuotation>> getListQuotation() {
+        @GetMapping("getInfo")
+        public ResponseEntity<List<SalesQuotation>> getListQuotation
+        
+            () {
         List<SalesQuotation> list = service.getListQuotation();
-        return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
-    }
+            return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+        }
 
-    @PostMapping("addInfo")
-    public ResponseEntity<Boolean> copyQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
+        @PostMapping("addInfo")
+        public ResponseEntity<Boolean> copyQuotation
+        (@RequestBody
+        SalesQuotation quot, UriComponentsBuilder builder
+        
+            ) {
 
         service.copyQuotation(quot);
-        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
-    }
+            return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+        }
 
-}
+        @GetMapping("confirm")
+        public ResponseEntity<Boolean> confirm
+        (@RequestParam("id")
+        Integer ord_id, @RequestParam("confirm") String stat
+        
+            ) {
+        if (service.confirmOrder(ord_id, stat)) {
+                return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+            }
+        }
+
+    }

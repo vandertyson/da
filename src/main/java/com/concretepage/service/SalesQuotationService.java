@@ -69,4 +69,16 @@ public class SalesQuotationService implements ISalesQuotationService {
         return DAO.getQuotByStatus(Status);
     }
 
+    @Override
+    public void countQuot(Integer id) {
+        DAO.countQuot(id);
+    }
+
+    @Override
+    public List<SalesQuotation> getQuotByCustomer(String code) {
+        return DAO.getQuotByCustomer(code);
+    }
+
+
+
 }

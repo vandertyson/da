@@ -12,9 +12,11 @@ import com.concretepage.entity.SalesQuotation;
 import com.concretepage.rowmapper.SalesQuotationRowMapper;
 import com.concretepage.daointerface.ISalesQuotationDAO;
 import com.concretepage.entity.ContactPerson;
+import com.concretepage.entity.Item;
 import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.rowmapper.ContactPersonRowMapper;
+import com.concretepage.rowmapper.ItemRowMapper;
 import com.concretepage.rowmapper.SqGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
 import org.springframework.http.ResponseEntity;
@@ -125,12 +127,22 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         int update = jdbcTemplate.update(sql, stat, quot_id);
         return update > 0;
     }
-    
+
     public List<SalesQuotation> getQuotByStatus(String status) {
         String sql = "select * from view_quotation where DocStatus = ? order by DocEntry DESC";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper, status);
     }
-    
-    //public 
+
+    public void countQuot(int id) {
+        String sql = "SELECT COUNT(DocEntry) FROM view_quotation;";
+        jdbcTemplate.update(sql, id);
+    }
+
+    public List<SalesQuotation> getQuotByCustomer(String code) {
+        String sql = "SELECT * FROM view_quotation where CardCode = ?";
+        RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper, code);
+    }
+
 }

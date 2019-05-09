@@ -21,6 +21,7 @@ public class Customer {
     private Date createdate;
     private Date updatedate;
     private int usersign;
+    private String bankcode;
 
     public Customer(String name, String code, String contactperson, String email, String fax, String phone1, String phone2, int slpcode, Date createdate, Date updatedate, int usersign) {
         this.name = name;
@@ -122,6 +123,14 @@ public class Customer {
 
     public void setContactperson(String contactperson) {
         this.contactperson = contactperson;
+    }
+
+    public String getBankcode() {
+        return bankcode;
+    }
+
+    public void setBankcode(String bankcode) {
+        this.bankcode = bankcode;
     }
 
     public static void main(String[] args) {

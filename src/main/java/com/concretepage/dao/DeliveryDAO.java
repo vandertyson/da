@@ -12,11 +12,8 @@ import com.concretepage.entity.Delivery;
 import com.concretepage.rowmapper.DeliveryRowMapper;
 import com.concretepage.daointerface.IDeliveryDAO;
 import com.concretepage.entity.DeliveryGrid;
-import com.concretepage.entity.SalesOrder;
-import com.concretepage.entity.SoGrid;
 import com.concretepage.entity.Transport;
 import com.concretepage.rowmapper.DeliveryGridRowMapper;
-import com.concretepage.rowmapper.SoGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
 
 @Transactional

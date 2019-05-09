@@ -19,14 +19,18 @@ public interface ISalesQuotationService {
     public Long getNewQuottionID();
 
     public void addnewQuotation(SalesQuotation quot);
-    
+
     public void updateQuotation(SalesQuotation qot);
-    
+
     public void deleteQuotation(int id);
 
     public List<ContactPerson> getAllContacts();
 
     public Boolean confirmQuotation(Integer quot_id, String stat);
-        
+
     public List<SalesQuotation> getAllQuotation(String Status);
+
+    public void countQuot(Integer id);
+
+    public List<SalesQuotation> getQuotByCustomer(String code);
 }

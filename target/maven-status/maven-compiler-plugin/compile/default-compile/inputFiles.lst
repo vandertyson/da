@@ -3,6 +3,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\ArGridDA
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\DeliveryGridService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\ISalesQuotationDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\SalesOrderRowMapper.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IWarehouseService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\ICustomerService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\SoGridService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\UsersController.java
@@ -13,6 +14,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\ArIn
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IArticleService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\DeliveryGridRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\UsersDAO.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\ItemGroup.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Department.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IUsersService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\SalesOrder.java
@@ -21,6 +23,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\So
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\SalesQuotationDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\SalesOrderDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\SaleEmployeeService.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\ItemGroupRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\SalesQuotationRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\DeliveryRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\EmployeeDAO.java
@@ -43,6 +46,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\SoGrid.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\ISoGridDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\ISalesOrderService.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\WarehouseDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\EmployeeRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\ISalesOrderDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\SqGridDAO.java
@@ -54,6 +58,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\ItemDAO.
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\EmployeeService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IArGridService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\SalesOrderController.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\WarehouseController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\DeliveryDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\SaleEmployeeDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\IDeliveryGridDAO.java
@@ -67,6 +72,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\ArticleService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\IArticleDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\SalesOrderService.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\IWarehouseDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\DeliveryGridController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\TransportRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\ArInvoice.java
@@ -78,6 +84,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\daointerface\IUsersDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Warehouse.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\ISqGridService.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\WarehouseRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\rowmapper\ItemRowMapper.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\ISalesQuotationService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\EmployeeController.java
@@ -99,6 +106,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\S
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IDeliveryService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\DeliveryGridDAO.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\DeliveryGrid.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\WarehouseService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\ContactPerson.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\ArticleController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\Article.java

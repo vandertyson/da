@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
-@RequestMapping("delvery")
+@RequestMapping("delivery")
 public class DeliveryController {
 
     @Autowired

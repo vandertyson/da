@@ -17,6 +17,5 @@ public interface ISalesQuotationDAO {
     List<ContactPerson> getAllContacts();
 
     public void deleteQuotation(int id);
-   
 
 }

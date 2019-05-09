@@ -3,6 +3,7 @@ package com.concretepage.iservice;
 import java.util.List;
 
 import com.concretepage.entity.ArInvoice;
+import com.concretepage.entity.Transport;
 
 public interface IArInvoiceService {
 
@@ -16,4 +17,10 @@ public interface IArInvoiceService {
     public Long getNewInvoiceID();
 
     public void addnewInvoice(ArInvoice inv);
+
+    public List<Transport> getAllTransports();
+
+    public void updateInvoice(ArInvoice inv);
+
+    public void deleteInvoice(Integer id);
 }

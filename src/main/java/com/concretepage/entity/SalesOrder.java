@@ -24,6 +24,7 @@ public class SalesOrder {
         this.address = address;
         this.shipto = shipto;
         this.transport = transport;
+        
     }
 
     public SalesOrder() {
@@ -81,9 +82,19 @@ public class SalesOrder {
     private String emplastname;
     private String transportname;
     private String ref;
+    private String docstatus;
     private List<SoGrid> listItem;
     private List<SalesQuotation> listQuotation;
 
+    public String getDocstatus() {
+        return docstatus;
+    }
+
+    public void setDocstatus(String docstatus) {
+        this.docstatus = docstatus;
+    }
+
+    
     public String getRef() {
         return ref;
     }

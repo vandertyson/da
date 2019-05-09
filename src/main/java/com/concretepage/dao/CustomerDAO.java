@@ -43,9 +43,10 @@ public class CustomerDAO implements ICustomerDAO {
         String sql1 = "Select max(DocEntry) from dbo.OCRD";
         Long newid = jdbcTemplate.queryForObject(sql1, Long.class);
         String sql = "INSERT INTO dbo.OCRD (CardCode,CardName,CntctPrsn,MailAddres,"
-                + "Fax,Phone1,Phone2,CreateDate,DocEntry) values (?,?,?,?,?,?,?,?,?)";
+                + "Fax,Phone1,Phone2,CreateDate,BankCode,DocEntry) values (?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, cust.getCode(), cust.getName(), cust.getContactperson(),
-                cust.getFax(), cust.getEmail(), cust.getPhone1(), cust.getPhone2(), cust.getCreatedate(), newid + 1);
+                cust.getFax(), cust.getEmail(), cust.getPhone1(), cust.getPhone2(),
+                cust.getCreatedate(), cust.getBankcode(), newid + 1);
     }
 
     @Override

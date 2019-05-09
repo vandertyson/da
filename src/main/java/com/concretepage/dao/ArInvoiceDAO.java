@@ -66,7 +66,7 @@ public class ArInvoiceDAO implements IArInvoiceDAO {
                 inv.getAddress(), inv.getTrasnport());
 
         for (ArGrid arGrid : inv.getListItem()) {
-            String sql4 = "Select max(LineNum) from dbo.DLN1";
+            String sql4 = "Select max(LineNum) from dbo.INV1";
             Long new_linenum = jdbcTemplate.queryForObject(sql4, Long.class);
 
             String sql2 = "INSERT INTO dbo.INV1 (DocEntry,LineNum,ItemCode,Dscription,"
@@ -87,24 +87,24 @@ public class ArInvoiceDAO implements IArInvoiceDAO {
         return this.jdbcTemplate.query(sql, rowMapper);
     }
 
-    public void updateInvoice(Delivery delv) {
-        String sql = "UPDATE dbo.ODLN SET  DocDueDate=? WHERE DocEntry=? ";
-        jdbcTemplate.update(sql, delv.getDueDate(), delv.getId());
+    public void updateInvoice(ArInvoice inv) {
+        String sql = "UPDATE dbo.OINV SET  DocDueDate=? WHERE DocEntry=? ";
+        jdbcTemplate.update(sql, inv.getDueDate(), inv.getId());
 
-        for (DeliveryGrid delvGrid : delv.getListItem()) {
-            String sql_item = "update dbo.DLN1 set  Quantity = ?"
+        for (ArGrid arGrid : inv.getListItem()) {
+            String sql_item = "update dbo.INV1 set  Quantity = ?"
                     + " where DocEntry = ?";
             //sql1
-            jdbcTemplate.update(sql_item, delvGrid.getQuantity(), delvGrid.getId());
+            jdbcTemplate.update(sql_item, arGrid.getQuantity(), arGrid.getId());
 
         }
     }
 
     @Override
     public void deleteInvoice(int id) {
-        String sql = "DELETE from dbo.ODLN WHERE DocEntry = ?";
+        String sql = "DELETE from dbo.OINV WHERE DocEntry = ?";
         jdbcTemplate.update(sql, id);
-        String sql_grid = "DELETE from dbo.DLN1 WHERE DocEntry = ?";
+        String sql_grid = "DELETE from dbo.INV1 WHERE DocEntry = ?";
         jdbcTemplate.update(sql_grid, id);
     }
 }

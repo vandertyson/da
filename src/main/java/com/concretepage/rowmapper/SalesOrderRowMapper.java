@@ -31,6 +31,7 @@ public class SalesOrderRowMapper implements RowMapper<SalesOrder> {
         head.setEmplastname(row.getString("LastName"));
         head.setTransportname(row.getString("TrnspName"));
         head.setRef(row.getString("Ref1"));
+        head.setDocstatus(row.getString("DocStatus"));
         return head;
     }
 

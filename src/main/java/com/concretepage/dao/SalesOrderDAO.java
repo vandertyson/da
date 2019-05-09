@@ -121,5 +121,17 @@ public class SalesOrderDAO implements ISalesOrderDAO {
         String sql = "INSERT INTO dbo.ORDR (select * from view_quotation where Ref1 IS NULL)";
         jdbcTemplate.update(sql, quot.getRef());
     }
+    
+     public boolean confirmOrder(Integer ord_id, String stat) {
+        String sql = "update dbo.ORDR SET DocStatus = ? where DocEntry = ?";
+        int update = jdbcTemplate.update(sql, stat, ord_id);
+        return update > 0;
+    }
+
+    public List<SalesOrder> getOrderByStatus(String status) {
+        String sql = "select * from view_order where DocStatus = ? order by DocEntry DESC";
+        RowMapper<SalesOrder> rowMapper = new SalesOrderRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper, status);
+    }
 
 }

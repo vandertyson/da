@@ -26,4 +26,8 @@ public interface ISalesOrderService {
 
     public void copyQuotation(SalesQuotation quot);
 
+    public boolean confirmOrder(Integer ord_id, String stat);
+
+    public List<SalesOrder> getAllOrder(String status);
+
 }

@@ -62,4 +62,14 @@ public class SalesOrderService implements ISalesOrderService {
         DAO.copyQuotation(quot);
     }
 
+    @Override
+    public boolean confirmOrder(Integer ord_id, String stat) {
+        return DAO.confirmOrder(ord_id, stat);
+    }
+
+    @Override
+    public List<SalesOrder> getAllOrder(String status) {
+        return DAO.getOrderByStatus(status);
+    }
+
 }

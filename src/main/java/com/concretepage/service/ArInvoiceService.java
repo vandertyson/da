@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.concretepage.entity.ArInvoice;
 import com.concretepage.daointerface.IArInvoiceDAO;
+import com.concretepage.entity.Transport;
 import com.concretepage.iservice.IArInvoiceService;
 
 @Service
@@ -35,6 +36,21 @@ public class ArInvoiceService implements IArInvoiceService {
     @Override
     public void addnewInvoice(ArInvoice inv) {
         DAO.addnewInvoice(inv);
+    }
+
+    @Override
+    public List<Transport> getAllTransports() {
+        return DAO.getAllTransports();
+    }
+
+    @Override
+    public void updateInvoice(ArInvoice inv) {
+        DAO.updateInvoice(inv);
+    }
+
+    @Override
+    public void deleteInvoice(Integer id) {
+        DAO.deleteInvoice(id);
     }
 
 }

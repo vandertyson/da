@@ -23,6 +23,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
         cust.setCreatedate(row.getDate("CreateDate"));
         cust.setUpdatedate(row.getDate("UpdateDate"));
         cust.setUsersign(row.getInt("UserSign"));
+        cust.setBankcode(row.getString("BankCode"));
         return cust;
     }
     

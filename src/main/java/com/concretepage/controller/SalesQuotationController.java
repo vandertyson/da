@@ -48,7 +48,7 @@ public class SalesQuotationController {
         if (status == null) {
             List<SalesQuotation> list = service.getAllQuotation();
             return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
-        }else{
+        } else {
             List<SalesQuotation> list = service.getAllQuotation(status);
             return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
         }
@@ -110,6 +110,18 @@ public class SalesQuotationController {
         } else {
             return new ResponseEntity<Boolean>(false, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("count")
+    public ResponseEntity<Void> countQuot(@PathVariable("id") Integer id) {
+        service.countQuot(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("listQuot")
+    public ResponseEntity<List<SalesQuotation>> getQuotByCustomer(@RequestParam("code") String code) {
+        List<SalesQuotation> list = service.getQuotByCustomer(code);
+        return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
     }
 
 }
