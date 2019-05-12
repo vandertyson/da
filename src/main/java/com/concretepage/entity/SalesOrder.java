@@ -86,6 +86,7 @@ public class SalesOrder {
     private List<SoGrid> listItem;
     private List<SalesQuotation> listQuotation;
 
+
     public String getDocstatus() {
         return docstatus;
     }

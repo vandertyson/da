@@ -49,6 +49,24 @@ public class SoGrid {
     private String warehouse;
     private String uomcode;
     private Double openqty;
+    private Double accumulate;
+    private Double minus;
+
+    public Double getAccumulate() {
+        return accumulate;
+    }
+
+    public void setAccumulate(Double accumulate) {
+        this.accumulate = accumulate;
+    }
+
+    public Double getMinus() {
+        return minus;
+    }
+
+    public void setMinus(Double minus) {
+        this.minus = minus;
+    }
 
     public int getVat() {
         return vat;

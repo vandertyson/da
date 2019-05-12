@@ -69,6 +69,7 @@ com\concretepage\controller\CustomerController.class
 com\concretepage\rowmapper\ArInvoiceRowMapper.class
 com\concretepage\service\ArGridService.class
 com\concretepage\dao\SaleEmployeeDAO.class
+com\concretepage\entity\Stat.class
 com\concretepage\dao\SalesOrderDAO.class
 com\concretepage\controller\ArInvoiceController.class
 com\concretepage\controller\SalesQuotationController.class

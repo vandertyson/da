@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.SqGrid;
+import com.concretepage.entity.Stat;
 import com.concretepage.entity.Transport;
 import org.springframework.http.ResponseEntity;
 
@@ -30,7 +31,7 @@ public interface ISalesQuotationService {
 
     public List<SalesQuotation> getAllQuotation(String Status);
 
-    public void countQuot(Integer id);
-
     public List<SalesQuotation> getQuotByCustomer(String code);
+
+    public List<Stat> countQuot();
 }

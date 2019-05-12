@@ -25,7 +25,8 @@ public class SoGridRowMapper implements RowMapper<SoGrid> {
         grid.setWarehouse(row.getString("WhsCode"));
         grid.setUomcode(row.getString("UomCode"));
         grid.setOpenqty(row.getDouble("OpenQty"));
-
+        grid.setAccumulate(row.getDouble("AccumulateQty"));
+        grid.setMinus(row.getDouble("Quantity") - row.getDouble("AccumulateQty"));
         return grid;
     }
 

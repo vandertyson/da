@@ -121,8 +121,8 @@ public class SalesOrderDAO implements ISalesOrderDAO {
         String sql = "INSERT INTO dbo.ORDR (select * from view_quotation where Ref1 IS NULL)";
         jdbcTemplate.update(sql, quot.getRef());
     }
-    
-     public boolean confirmOrder(Integer ord_id, String stat) {
+
+    public boolean confirmOrder(Integer ord_id, String stat) {
         String sql = "update dbo.ORDR SET DocStatus = ? where DocEntry = ?";
         int update = jdbcTemplate.update(sql, stat, ord_id);
         return update > 0;
@@ -134,4 +134,18 @@ public class SalesOrderDAO implements ISalesOrderDAO {
         return this.jdbcTemplate.query(sql, rowMapper, status);
     }
 
+    public boolean printOrder(Integer ord_id, String print) {
+        String sql = "update dbo.ORDR SET Printed = ? where DocEntry = ?";
+        int update = jdbcTemplate.update(sql, print, ord_id);
+        return update > 0;
+    }
+
+    public boolean update(Integer ord_id, String itemID, Integer num) {
+        String sql_da_xuat = "Select AccumulateQty from dbo.RDR1 WHERE DocEntry = ? and ItemCode = ?";
+        Double da_xuat = jdbcTemplate.queryForObject(sql_da_xuat, new Object[]{ord_id, itemID}, Double.class);
+        da_xuat = da_xuat == null ? 0 : da_xuat;
+        String sql = "UPDATE dbo.RDR1 SET AccumulateQty = ? WHERE DocEntry = ? and ItemCode = ?";
+        int update = jdbcTemplate.update(sql, num + da_xuat, ord_id, itemID);
+        return update > 0;
+    }
 }

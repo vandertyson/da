@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.concretepage.entity.SaleEmployee;
 import com.concretepage.entity.SalesQuotation;
+import com.concretepage.entity.Stat;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 import com.concretepage.service.EmployeeService;
@@ -113,9 +114,8 @@ public class SalesQuotationController {
     }
 
     @GetMapping("count")
-    public ResponseEntity<Void> countQuot(@PathVariable("id") Integer id) {
-        service.countQuot(id);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+    public ResponseEntity<List<Stat>> countQuot() {        
+        return new ResponseEntity<List<Stat>>(service.countQuot(), HttpStatus.OK);
     }
 
     @GetMapping("listQuot")

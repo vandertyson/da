@@ -17,9 +17,9 @@ public interface ISalesOrderService {
     public Long getNewOrderID();
 
     public void addnewOrder(SalesOrder ord);
-    
+
     public void updateOrder(SalesOrder ord);
-    
+
     public void deleteOrder(int id);
 
     public List<SalesQuotation> getListQuotation();
@@ -29,5 +29,9 @@ public interface ISalesOrderService {
     public boolean confirmOrder(Integer ord_id, String stat);
 
     public List<SalesOrder> getAllOrder(String status);
+
+    public boolean copyOrder(Integer ord_id, String print);
+
+    public boolean exportOrder(Integer ord_id, String itemID, Integer num);
 
 }

@@ -72,4 +72,16 @@ public class SalesOrderService implements ISalesOrderService {
         return DAO.getOrderByStatus(status);
     }
 
+    @Override
+    public boolean copyOrder(Integer ord_id, String print) {
+        return DAO.confirmOrder(ord_id, print);
+    }
+
+    @Override
+    public boolean exportOrder(Integer ord_id, String itemID, Integer num) {
+        return DAO.update(ord_id, itemID, num);
+    }
+
+
+
 }

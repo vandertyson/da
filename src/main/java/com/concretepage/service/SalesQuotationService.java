@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.concretepage.entity.SalesQuotation;
 import com.concretepage.entity.ContactPerson;
+import com.concretepage.entity.Stat;
 import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 import org.springframework.http.ResponseEntity;
@@ -63,22 +64,20 @@ public class SalesQuotationService implements ISalesQuotationService {
     public Boolean confirmQuotation(Integer quot_id, String stat) {
         return DAO.confirmQuotation(quot_id, stat);
     }
-    
+
     @Override
     public List<SalesQuotation> getAllQuotation(String Status) {
         return DAO.getQuotByStatus(Status);
     }
 
     @Override
-    public void countQuot(Integer id) {
-        DAO.countQuot(id);
+    public List<Stat> countQuot() {
+        return DAO.countQuot();
     }
 
     @Override
     public List<SalesQuotation> getQuotByCustomer(String code) {
         return DAO.getQuotByCustomer(code);
     }
-
-
 
 }

@@ -14,11 +14,13 @@ import com.concretepage.daointerface.ISalesQuotationDAO;
 import com.concretepage.entity.ContactPerson;
 import com.concretepage.entity.Item;
 import com.concretepage.entity.SqGrid;
+import com.concretepage.entity.Stat;
 import com.concretepage.entity.Transport;
 import com.concretepage.rowmapper.ContactPersonRowMapper;
 import com.concretepage.rowmapper.ItemRowMapper;
 import com.concretepage.rowmapper.SqGridRowMapper;
 import com.concretepage.rowmapper.TransportRowMapper;
+import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 
 @Transactional
@@ -134,9 +136,18 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         return this.jdbcTemplate.query(sql, rowMapper, status);
     }
 
-    public void countQuot(int id) {
-        String sql = "SELECT COUNT(DocEntry) FROM view_quotation;";
-        jdbcTemplate.update(sql, id);
+    public List<Stat> countQuot() {
+        String sql_quot = "SELECT COUNT(*) FROM view_quotation;";        
+        String sql_order = "SELECT COUNT(*) FROM view_order;";        
+        String sql_delivery = "SELECT COUNT(*) FROM view_delivery;";        
+        String sql_invoice = "SELECT COUNT(*) FROM view_ar;";        
+        
+        List<Stat> result = new ArrayList<Stat>();        
+        result.add(new Stat("Created Quotation",jdbcTemplate.queryForObject(sql_quot, Integer.class)));
+        result.add(new Stat("Created Order",jdbcTemplate.queryForObject(sql_order, Integer.class)));
+        result.add(new Stat("Created Dilivery",jdbcTemplate.queryForObject(sql_delivery, Integer.class)));
+        result.add(new Stat("Created Invoice",jdbcTemplate.queryForObject(sql_invoice, Integer.class)));        
+        return result;
     }
 
     public List<SalesQuotation> getQuotByCustomer(String code) {
