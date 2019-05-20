@@ -123,5 +123,4 @@ public class SalesQuotationController {
         List<SalesQuotation> list = service.getQuotByCustomer(code);
         return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
     }
-
 }

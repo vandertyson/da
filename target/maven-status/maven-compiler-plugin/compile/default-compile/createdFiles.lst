@@ -4,6 +4,8 @@ com\concretepage\rowmapper\WarehouseRowMapper.class
 com\concretepage\rowmapper\TransportRowMapper.class
 com\concretepage\dao\DeliveryGridDAO.class
 com\concretepage\daointerface\IItemDAO.class
+com\concretepage\entity\InPayment.class
+com\concretepage\rowmapper\InPaymentRowMapper.class
 com\concretepage\iservice\ISalesQuotationService.class
 com\concretepage\controller\EmployeeController.class
 com\concretepage\controller\SqGridController.class
@@ -22,6 +24,7 @@ com\concretepage\entity\DeliveryGrid.class
 com\concretepage\rowmapper\DeliveryGridRowMapper.class
 com\concretepage\entity\Employee.class
 com\concretepage\entity\Transport.class
+com\concretepage\dao\InPaymentDAO.class
 com\concretepage\rowmapper\DepartmentRowMapper.class
 com\concretepage\rowmapper\EmployeeRowMapper.class
 com\concretepage\controller\SoGridController.class
@@ -31,6 +34,7 @@ com\concretepage\service\DeliveryGridService.class
 com\concretepage\service\SalesOrderService.class
 com\concretepage\dao\ArticleDAO.class
 com\concretepage\entity\ContactPerson.class
+com\concretepage\daointerface\IInPaymentDAO.class
 com\concretepage\daointerface\ISqGridDAO.class
 com\concretepage\daointerface\ISoGridDAO.class
 com\concretepage\daointerface\IArInvoiceDAO.class
@@ -80,10 +84,13 @@ com\concretepage\service\SoGridService.class
 com\concretepage\dao\CustomerDAO.class
 com\concretepage\rowmapper\CustomerRowMapper.class
 com\concretepage\controller\WarehouseController.class
+com\concretepage\iservice\IInPaymentService.class
 com\concretepage\controller\ItemController.class
+com\concretepage\controller\InPaymentController.class
 com\concretepage\rowmapper\ItemGroupRowMapper.class
 com\concretepage\entity\Users.class
 com\concretepage\rowmapper\ArGridRowMapper.class
+com\concretepage\service\InPaymentService.class
 com\concretepage\controller\ArticleController.class
 com\concretepage\rowmapper\SaleEmployeeRowMapper.class
 com\concretepage\MyApplication.class

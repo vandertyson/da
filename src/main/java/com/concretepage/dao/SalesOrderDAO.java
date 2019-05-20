@@ -62,7 +62,7 @@ public class SalesOrderDAO implements ISalesOrderDAO {
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
                 + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, ord.getCode(),
-                ord.getName(), ord.getContactName(), ord.getCurrency(),
+                ord.getName(), ord.getContactCode(), ord.getCurrency(),
                 ord.getSaleEmployee(), ord.getEmployee(), ord.getDocDate(),
                 ord.getDueDate(), ord.getTaxDate(), ord.getShipto(),
                 ord.getAddress(), ord.getTrasnport());

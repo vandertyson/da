@@ -25,7 +25,6 @@ public class ArInvoice {
         this.shipto = shipto;
         this.trasnport = trasnport;
         this.slpname = slpname;
-        this.cntname = cntname;
         this.emfirstname = emfirstname;
         this.emplastname = emplastname;
         this.transportname = transportname;
@@ -47,6 +46,14 @@ public class ArInvoice {
 
     public void setDocnum(int docnum) {
         this.docnum = docnum;
+    }
+
+    public String getContactCode() {
+        return contactpersoncode;
+    }
+
+    public void setContactCode(String code) {
+        this.contactpersoncode = code;
     }
 
     public String getContactName() {
@@ -79,14 +86,6 @@ public class ArInvoice {
 
     public void setSlpname(String slpname) {
         this.slpname = slpname;
-    }
-
-    public String getCntname() {
-        return cntname;
-    }
-
-    public void setCntname(String cntname) {
-        this.cntname = cntname;
     }
 
     public String getEmfirstname() {
@@ -125,6 +124,7 @@ public class ArInvoice {
     private String name;
     private String code;
     private int docnum;
+    private String contactpersoncode;
     private String contactpersonname;
     private String currency;
     private String saleemployee;
@@ -136,7 +136,6 @@ public class ArInvoice {
     private String shipto;
     private int trasnport;
     private String slpname;
-    private String cntname;
     private String emfirstname;
     private String emplastname;
     private String transportname;

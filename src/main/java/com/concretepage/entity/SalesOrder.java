@@ -46,6 +46,14 @@ public class SalesOrder {
         this.contactpersonname = contactpersonname;
     }
 
+    public String getContactCode() {
+        return contactpersoncode;
+    }
+
+    public void setContactCode(String code) {
+        this.contactpersoncode = code;
+    }
+
     public int getId() {
         return id;
     }
@@ -66,6 +74,7 @@ public class SalesOrder {
     private String name;
     private String code;
     private int docnum;
+    private String contactpersoncode;
     private String contactpersonname;
     private String currency;
     private String saleemployee;
@@ -77,7 +86,6 @@ public class SalesOrder {
     private String shipto;
     private int transport;
     private String slpname;
-    private String cntname;
     private String emfirstname;
     private String emplastname;
     private String transportname;
@@ -118,14 +126,6 @@ public class SalesOrder {
 
     public void setSlpname(String slpname) {
         this.slpname = slpname;
-    }
-
-    public String getCntname() {
-        return cntname;
-    }
-
-    public void setCntname(String cntname) {
-        this.cntname = cntname;
     }
 
     public String getEmfirstname() {

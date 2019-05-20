@@ -143,10 +143,10 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
         String sql_invoice = "SELECT COUNT(*) FROM view_ar;";        
         
         List<Stat> result = new ArrayList<Stat>();        
-        result.add(new Stat("Created Quotation",jdbcTemplate.queryForObject(sql_quot, Integer.class)));
-        result.add(new Stat("Created Order",jdbcTemplate.queryForObject(sql_order, Integer.class)));
-        result.add(new Stat("Created Dilivery",jdbcTemplate.queryForObject(sql_delivery, Integer.class)));
-        result.add(new Stat("Created Invoice",jdbcTemplate.queryForObject(sql_invoice, Integer.class)));        
+        result.add(new Stat("Created Sales Quotation",jdbcTemplate.queryForObject(sql_quot, Integer.class)));
+        result.add(new Stat("Created Sales Order",jdbcTemplate.queryForObject(sql_order, Integer.class)));
+        result.add(new Stat("Created Delivery",jdbcTemplate.queryForObject(sql_delivery, Integer.class)));
+        result.add(new Stat("Created AR-Invoice",jdbcTemplate.queryForObject(sql_invoice, Integer.class)));        
         return result;
     }
 

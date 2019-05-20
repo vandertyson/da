@@ -4,10 +4,8 @@ import com.concretepage.entity.ContactPerson;
 import java.util.List;
 
 import com.concretepage.entity.SalesQuotation;
-import com.concretepage.entity.SqGrid;
 import com.concretepage.entity.Stat;
 import com.concretepage.entity.Transport;
-import org.springframework.http.ResponseEntity;
 
 public interface ISalesQuotationService {
 

@@ -25,7 +25,6 @@ public class Delivery {
         this.shipto = shipto;
         this.trasnport = trasnport;
         this.slpname = slpname;
-        this.cntname = cntname;
         this.emfirstname = emfirstname;
         this.emplastname = emplastname;
         this.transportname = transportname;
@@ -46,6 +45,7 @@ public class Delivery {
     private String code;
     private int docnum;
     private String contactpersonname;
+    private String contactpersoncode;
     private String currency;
     private String saleemployee;
     private String employee;
@@ -56,12 +56,19 @@ public class Delivery {
     private String shipto;
     private int trasnport;
     private String slpname;
-    private String cntname;
     private String emfirstname;
     private String emplastname;
     private String transportname;
     private String ref;
     private List<DeliveryGrid> listItem;
+
+    public String getContactCode() {
+        return contactpersoncode;
+    }
+
+    public void setContactCode(String code) {
+        this.contactpersoncode = code;
+    }
 
     public String getContactName() {
         return contactpersonname;
@@ -93,14 +100,6 @@ public class Delivery {
 
     public void setSlpname(String slpname) {
         this.slpname = slpname;
-    }
-
-    public String getCntname() {
-        return cntname;
-    }
-
-    public void setCntname(String cntname) {
-        this.cntname = cntname;
     }
 
     public String getEmfirstname() {

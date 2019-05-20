@@ -61,7 +61,7 @@ public class ArInvoiceDAO implements IArInvoiceDAO {
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
                 + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, inv.getCode(),
-                inv.getName(), inv.getContactName(), inv.getCurrency(), inv.getSaleEmployee(), inv.getEmployee(), inv.getDocDate(),
+                inv.getName(), inv.getContactCode(), inv.getCurrency(), inv.getSaleEmployee(), inv.getEmployee(), inv.getDocDate(),
                 inv.getDueDate(), inv.getTaxDate(), inv.getShipto(),
                 inv.getAddress(), inv.getTrasnport());
 

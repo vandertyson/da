@@ -58,7 +58,7 @@ public class DeliveryDAO implements IDeliveryDAO {
                 + "DocDueDate,TaxDate,ShipToCode,Address2,"
                 + "TrnspCode) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sqlll, newDocEntry + 1, newDocNum + 1, delv.getCode(),
-                delv.getName(), delv.getContactName(), delv.getCurrency(), delv.getSaleEmployee(), delv.getEmployee(), delv.getDocDate(),
+                delv.getName(), delv.getContactCode(), delv.getCurrency(), delv.getSaleEmployee(), delv.getEmployee(), delv.getDocDate(),
                 delv.getDueDate(), delv.getTaxDate(), delv.getShipto(),
                 delv.getAddress(), delv.getTrasnport());
 
