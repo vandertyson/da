@@ -41,7 +41,7 @@ public class SalesOrderDAO implements ISalesOrderDAO {
 
     @Override
     public List<SalesOrder> getAllOrder() {
-        String sql = "SELECT * from view_order";
+        String sql = "SELECT * from view_order where DocStatus = 'C'";
         RowMapper<SalesOrder> rowMapper = new SalesOrderRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }

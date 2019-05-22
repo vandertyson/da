@@ -18,6 +18,13 @@ import com.concretepage.entity.Transport;
 import com.concretepage.iservice.ISalesQuotationService;
 import com.concretepage.service.EmployeeService;
 import com.concretepage.service.SaleEmployeeService;
+import com.concretepage.utils.PdfFromXmlFile;
+import java.io.File;
+import java.io.FileInputStream;
+import javax.servlet.ServletContext;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +35,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping("quotation")
 public class SalesQuotationController {
+
+    @Autowired
+    private ServletContext servletContext;
 
     @Autowired
     private ISalesQuotationService service;
@@ -74,8 +84,7 @@ public class SalesQuotationController {
     }
 
     @PostMapping("addQuotation")
-    public ResponseEntity<Boolean> addnewQuotation(@RequestBody SalesQuotation quot, UriComponentsBuilder builder) {
-
+    public ResponseEntity<Boolean> addnewQuotation(@RequestBody SalesQuotation quot) {
         service.addnewQuotation(quot);
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
@@ -114,7 +123,7 @@ public class SalesQuotationController {
     }
 
     @GetMapping("count")
-    public ResponseEntity<List<Stat>> countQuot() {        
+    public ResponseEntity<List<Stat>> countQuot() {
         return new ResponseEntity<List<Stat>>(service.countQuot(), HttpStatus.OK);
     }
 
@@ -122,5 +131,26 @@ public class SalesQuotationController {
     public ResponseEntity<List<SalesQuotation>> getQuotByCustomer(@RequestParam("code") String code) {
         List<SalesQuotation> list = service.getQuotByCustomer(code);
         return new ResponseEntity<List<SalesQuotation>>(list, HttpStatus.OK);
+    }
+
+    @PostMapping("export")
+    public ResponseEntity<InputStreamResource> exportQuotation(@RequestBody SalesQuotation quot) {
+        try {
+            String path = PdfFromXmlFile.exportQuotation(quot);
+            File file = new File(path);
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));            
+
+            return ResponseEntity.ok()
+                    // Content-Disposition
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                    // Content-Type
+                    .contentType(MediaType.APPLICATION_PDF)
+                    // Contet-Length
+                    .contentLength(file.length()) //
+                    .body(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -23,6 +23,8 @@ public class InPaymentRowMapper implements RowMapper<InPayment> {
         head.setBankcode(row.getString("BankCode"));
         head.setCode(row.getString("CardCode"));
         head.setName(row.getString("CardName"));
+        head.setContactCode(row.getString("CntctCode"));
+        head.setContactName(row.getString("Name"));
         head.setDocentry(row.getInt("DocEntry"));
         head.setDocnum(row.getInt("DocNum"));
         head.setDocdate(row.getDate("DocDate"));
@@ -32,5 +34,5 @@ public class InPaymentRowMapper implements RowMapper<InPayment> {
         head.setDoctotal(row.getDouble("DocTotal"));
         return head;
     }
-    
+
 }

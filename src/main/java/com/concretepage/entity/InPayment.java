@@ -25,7 +25,7 @@ public class InPayment {
         this.taxdate = taxdate;
         this.doctotal = doctotal;
         this.bankcode = bankcode;
-        this.bankacc = bankacc;
+        this.bankacc = bankacc;   
     }
 
     private int docnum;
@@ -33,12 +33,30 @@ public class InPayment {
     private String doctype;
     private String code;
     private String name;
+    private String contactpersoncode;
+    private String contactpersonname;
     private Date docdate;
     private Date duedate;
     private Date taxdate;
     private double doctotal;
     private String bankcode;
     private String bankacc;
+
+    public String getContactCode() {
+        return contactpersoncode;
+    }
+
+    public void setContactCode(String code) {
+        this.contactpersoncode = code;
+    }
+
+    public String getContactName() {
+        return contactpersonname;
+    }
+
+    public void setContactName(String contactpersonname) {
+        this.contactpersonname = contactpersonname;
+    }
 
     public InPayment() {
         super();
@@ -131,5 +149,5 @@ public class InPayment {
     public void setBankacc(String bankacc) {
         this.bankacc = bankacc;
     }
-    
+
 }

@@ -43,7 +43,7 @@ public class InPaymentController {
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
     
-    @PutMapping("updateQuotation")
+    @PutMapping("updatePayment")
     public ResponseEntity<Boolean> updatePayment(@RequestBody InPayment pay) {
         service.updatePayment(pay);
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);

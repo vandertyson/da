@@ -109,6 +109,7 @@ com\concretepage\rowmapper\ArticleRowMapper.class
 com\concretepage\iservice\ISalesOrderService.class
 com\concretepage\service\ArticleService.class
 com\concretepage\iservice\IUsersService.class
+com\concretepage\utils\PdfFromXmlFile.class
 com\concretepage\iservice\IArInvoiceService.class
 com\concretepage\entity\Customer.class
 com\concretepage\iservice\ISoGridService.class

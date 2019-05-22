@@ -44,7 +44,7 @@ public class SalesQuotationDAO implements ISalesQuotationDAO {
 
     @Override
     public List<SalesQuotation> getAllQuotation() {
-        String sql = "select * from view_quotation order by DocEntry DESC";
+        String sql = "select * from view_quotation where DocStatus = 'C' order by DocEntry DESC";
         RowMapper<SalesQuotation> rowMapper = new SalesQuotationRowMapper();
         return this.jdbcTemplate.query(sql, rowMapper);
     }

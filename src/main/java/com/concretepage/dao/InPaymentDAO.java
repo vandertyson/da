@@ -49,9 +49,9 @@ public class InPaymentDAO implements IInPaymentDAO {
         Long newDocEntry = jdbcTemplate.queryForObject(sql1ll, Long.class);
         String sql1 = "Select max(DocNum) from dbo.OCRT";
         Long newDocNum = jdbcTemplate.queryForObject(sql1, Long.class);
-        String sql_insert = "INSERT INTO dbo.OCRT (DocEntry,DocNum,CardCode,CardName,DocType,DocDate,DocDueDate,TaxDate,"
-                + "DocTotal,BankCode,BankAcct) values (?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql_insert, newDocEntry + 1, newDocNum + 1, pay.getCode(),pay.getName(),pay.getDoctype(),
+        String sql_insert = "INSERT INTO dbo.OCRT (DocEntry,DocNum,CardCode,CardName,CntctCode,DocType,DocDate,DocDueDate,TaxDate,"
+                + "DocTotal,BankCode,BankAcct) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql_insert, newDocEntry + 1, newDocNum + 1, pay.getCode(),pay.getName(),pay.getContactCode(),pay.getDoctype(),
                 pay.getDocdate(),pay.getDuedate(),pay.getTaxdate(),pay.getDoctotal(),pay.getBankcode(),pay.getBankacc());
     }
 

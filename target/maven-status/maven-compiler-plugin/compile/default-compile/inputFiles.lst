@@ -112,6 +112,7 @@ D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\S
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\controller\SoGridController.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\iservice\IDeliveryService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\dao\DeliveryGridDAO.java
+D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\utils\PdfFromXmlFile.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\DeliveryGrid.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\service\WarehouseService.java
 D:\?? ÁN T?T NGHI?P\spring-boot-demo\src\main\java\com\concretepage\entity\ContactPerson.java
